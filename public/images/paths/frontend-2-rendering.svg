@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="p2-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+  </defs>
+  <rect width="700" height="450" rx="16" fill="url(#p2-bg)" />
+  <rect x="30" y="30" width="640" height="390" rx="12" fill="#090d16" stroke="#334155" stroke-width="1.5" />
+  
+  <g transform="translate(60, 60)">
+    <rect x="0" y="0" width="120" height="26" rx="13" fill="#312e81" stroke="#6366f1" />
+    <text x="14" y="17" fill="#c7d2fe" font-family="monospace" font-size="11" font-weight="bold">STAGE 02</text>
+    <text x="135" y="19" fill="#f8fafc" font-family="sans-serif" font-size="20" font-weight="bold">Browser Rendering Pipeline</text>
+
+    <!-- Pipeline Flow Diagram -->
+    <g transform="translate(0, 50)">
+      <!-- Step 1: Parse -->
+      <rect x="0" y="0" width="125" height="150" rx="8" fill="#0f172a" stroke="#3b82f6" />
+      <text x="12" y="25" fill="#60a5fa" font-family="sans-serif" font-size="12" font-weight="bold">1. PARSE</text>
+      <text x="12" y="48" fill="#f8fafc" font-family="sans-serif" font-size="11">HTML &rarr; DOM</text>
+      <text x="12" y="66" fill="#f8fafc" font-family="sans-serif" font-size="11">CSS &rarr; CSSOM</text>
+      <line x1="12" y1="80" x2="113" y2="80" stroke="#1e293b" />
+      <text x="12" y="100" fill="#94a3b8" font-family="monospace" font-size="10">Tokenization</text>
+      <text x="12" y="118" fill="#94a3b8" font-family="monospace" font-size="10">Tree building</text>
+
+      <path d="M 125 75 L 145 75" stroke="#3b82f6" stroke-width="2" />
+
+      <!-- Step 2: Render Tree -->
+      <rect x="145" y="0" width="130" height="150" rx="8" fill="#0f172a" stroke="#6366f1" />
+      <text x="12" y="25" fill="#818cf8" font-family="sans-serif" font-size="12" font-weight="bold">2. STYLE</text>
+      <text x="12" y="48" fill="#f8fafc" font-family="sans-serif" font-size="11">Render Tree</text>
+      <text x="12" y="66" fill="#94a3b8" font-family="sans-serif" font-size="10">Visible nodes</text>
+      <line x1="12" y1="80" x2="118" y2="80" stroke="#1e293b" />
+      <text x="12" y="100" fill="#c7d2fe" font-family="monospace" font-size="10">Cascade solve</text>
+      <text x="12" y="118" fill="#c7d2fe" font-family="monospace" font-size="10">Computed style</text>
+
+      <path d="M 275 75 L 295 75" stroke="#6366f1" stroke-width="2" />
+
+      <!-- Step 3: Layout -->
+      <rect x="295" y="0" width="130" height="150" rx="8" fill="#0f172a" stroke="#8b5cf6" />
+      <text x="12" y="25" fill="#a78bfa" font-family="sans-serif" font-size="12" font-weight="bold">3. LAYOUT</text>
+      <text x="12" y="48" fill="#f8fafc" font-family="sans-serif" font-size="11">Reflow &amp; Geometry</text>
+      <text x="12" y="66" fill="#94a3b8" font-family="sans-serif" font-size="10">Exact pixels</text>
+      <line x1="12" y1="80" x2="118" y2="80" stroke="#1e293b" />
+      <text x="12" y="100" fill="#ddd6fe" font-family="monospace" font-size="10">Box metrics</text>
+      <text x="12" y="118" fill="#ddd6fe" font-family="monospace" font-size="10">Viewport size</text>
+
+      <path d="M 425 75 L 445 75" stroke="#8b5cf6" stroke-width="2" />
+
+      <!-- Step 4: Paint & Composite -->
+      <rect x="445" y="0" width="135" height="150" rx="8" fill="#0f172a" stroke="#10b981" />
+      <text x="12" y="25" fill="#34d399" font-family="sans-serif" font-size="12" font-weight="bold">4. COMPOSITE</text>
+      <text x="12" y="48" fill="#f8fafc" font-family="sans-serif" font-size="11">GPU Layers</text>
+      <text x="12" y="66" fill="#94a3b8" font-family="sans-serif" font-size="10">Fast 60fps</text>
+      <line x1="12" y1="80" x2="123" y2="80" stroke="#1e293b" />
+      <text x="12" y="100" fill="#a7f3d0" font-family="monospace" font-size="10">Rasterization</text>
+      <text x="12" y="118" fill="#a7f3d0" font-family="monospace" font-size="10">Tiling &amp; Draw</text>
+    </g>
+
+    <!-- Core Web Vitals Checklist -->
+    <g transform="translate(0, 220)">
+      <rect width="580" height="75" rx="8" fill="#111827" stroke="#374151" />
+      <text x="20" y="28" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="bold">Core Web Vitals Impact Analysis:</text>
+      <text x="20" y="52" fill="#38bdf8" font-family="monospace" font-size="11">&bull; LCP: Keep critical server payload &lt; 50kB to render paint candidate in &lt; 1.2s</text>
+      <text x="320" y="52" fill="#10b981" font-family="monospace" font-size="11">&bull; INP: Yield long tasks via scheduler.yield()</text>
+    </g>
+  </g>
+</svg>

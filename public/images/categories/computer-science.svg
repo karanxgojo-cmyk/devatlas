@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="cs-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" rx="12" fill="url(#cs-bg)" />
+
+  <g transform="translate(45, 35)">
+    <text x="0" y="20" fill="#34d399" font-family="monospace" font-size="12" font-weight="bold">// DISTRIBUTED SYSTEMS &amp; STORAGE INTERNALS</text>
+    <text x="0" y="42" fill="#f8fafc" font-family="sans-serif" font-size="16" font-weight="bold">Raft Consensus &amp; B-Tree Index Hierarchy</text>
+
+    <!-- Raft Cluster Nodes -->
+    <g transform="translate(0, 65)">
+      <!-- Node A: Leader -->
+      <rect x="0" y="0" width="140" height="110" rx="10" fill="#065f46" stroke="#10b981" stroke-width="2" />
+      <text x="12" y="24" fill="#a7f3d0" font-family="sans-serif" font-size="12" font-weight="bold">Node 1 [LEADER]</text>
+      <text x="12" y="44" fill="#ecfdf5" font-family="monospace" font-size="10">Term: 42</text>
+      <rect x="12" y="55" width="116" height="18" rx="4" fill="#047857" />
+      <text x="18" y="68" fill="#d1fae5" font-family="monospace" font-size="9">CommitIndex: 1048</text>
+      <text x="12" y="95" fill="#34d399" font-family="monospace" font-size="9">&bull; Heartbeat (50ms)</text>
+
+      <!-- Connection Lines -->
+      <path d="M 140 35 L 200 20" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 3" />
+      <path d="M 140 75 L 200 90" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 3" />
+
+      <!-- Node B: Follower -->
+      <rect x="200" y="0" width="130" height="50" rx="8" fill="#0f172a" stroke="#334155" />
+      <text x="12" y="22" fill="#94a3b8" font-family="sans-serif" font-size="11" font-weight="bold" transform="translate(200, 0)">Node 2 [Follower]</text>
+      <text x="12" y="38" fill="#64748b" font-family="monospace" font-size="9" transform="translate(200, 0)">Matched Log: 1048</text>
+
+      <!-- Node C: Follower -->
+      <rect x="200" y="65" width="130" height="50" rx="8" fill="#0f172a" stroke="#334155" />
+      <text x="12" y="22" fill="#94a3b8" font-family="sans-serif" font-size="11" font-weight="bold" transform="translate(200, 65)">Node 3 [Follower]</text>
+      <text x="12" y="38" fill="#64748b" font-family="monospace" font-size="9" transform="translate(200, 65)">Matched Log: 1048</text>
+    </g>
+
+    <!-- B+ Tree Index Visual -->
+    <g transform="translate(360, 65)">
+      <rect width="150" height="110" rx="10" fill="#0f172a" stroke="#10b981" />
+      <text x="12" y="22" fill="#6ee7b7" font-family="sans-serif" font-size="11" font-weight="bold">B+ Tree Storage Root</text>
+      <rect x="12" y="32" width="126" height="24" rx="4" fill="#1e293b" />
+      <text x="18" y="48" fill="#f8fafc" font-family="monospace" font-size="10">[20 | 50 | 80]</text>
+      <line x1="30" y1="56" x2="20" y2="75" stroke="#10b981" />
+      <line x1="75" y1="56" x2="75" y2="75" stroke="#10b981" />
+      <line x1="120" y1="56" x2="130" y2="75" stroke="#10b981" />
+      <rect x="10" y="75" width="130" height="24" rx="4" fill="#064e3b" />
+      <text x="14" y="91" fill="#a7f3d0" font-family="monospace" font-size="9">Leaf Nodes (Linked List)</text>
+    </g>
+
+    <!-- Paging & Virtual Memory Console -->
+    <g transform="translate(0, 200)">
+      <rect width="510" height="110" rx="8" fill="#090d16" stroke="#1e293b" />
+      <text x="16" y="25" fill="#38bdf8" font-family="monospace" font-size="11">&gt; OS Page Table &bull; CR3 Register: 0x00007fff8900</text>
+      <text x="16" y="45" fill="#94a3b8" font-family="monospace" font-size="10">Virtual Addr: 0x7ffd1234a000 &rarr; TLB Cache Hit &rarr; Physical Page Frame: 0x1f4a0</text>
+      <text x="16" y="65" fill="#10b981" font-family="monospace" font-size="10">Context Switch Cost: 1.2&mu;s &bull; Cache Flush Prevention with PCID</text>
+      <rect x="16" y="78" width="478" height="18" rx="4" fill="#1e293b" />
+      <text x="24" y="91" fill="#6ee7b7" font-family="monospace" font-size="10">Zero-Copy DMA &bull; epoll() socket I/O multiplexing active</text>
+    </g>
+  </g>
+</svg>

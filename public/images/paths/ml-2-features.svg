@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="ml2-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#4c1d95" />
+    </linearGradient>
+  </defs>
+  <rect width="700" height="450" rx="16" fill="url(#ml2-bg)" />
+  <rect x="30" y="30" width="640" height="390" rx="12" fill="#090d16" stroke="#334155" stroke-width="1.5" />
+  
+  <g transform="translate(60, 60)">
+    <rect x="0" y="0" width="120" height="26" rx="13" fill="#4c1d95" stroke="#a78bfa" />
+    <text x="14" y="17" fill="#ede9fe" font-family="monospace" font-size="11" font-weight="bold">STAGE 02</text>
+    <text x="135" y="19" fill="#f8fafc" font-family="sans-serif" font-size="20" font-weight="bold">Feature Engineering &amp; Vector Stores</text>
+
+    <!-- Feature Transformation & Store Architecture -->
+    <g transform="translate(0, 45)">
+      <!-- Tabular Features -->
+      <g transform="translate(0, 0)">
+        <rect width="180" height="150" rx="8" fill="#1e1b4b" stroke="#7c3aed" />
+        <text x="14" y="24" fill="#ddd6fe" font-family="sans-serif" font-size="11" font-weight="bold">Dense Features</text>
+        <rect x="14" y="38" width="152" height="20" rx="4" fill="#2e1065" />
+        <text x="20" y="52" fill="#c4b5fd" font-family="monospace" font-size="9">StandardScaler(z-score)</text>
+        <rect x="14" y="64" width="152" height="20" rx="4" fill="#2e1065" />
+        <text x="20" y="78" fill="#c4b5fd" font-family="monospace" font-size="9">One-Hot Encoding</text>
+        <rect x="14" y="90" width="152" height="20" rx="4" fill="#2e1065" />
+        <text x="20" y="104" fill="#c4b5fd" font-family="monospace" font-size="9">Lagged Rolling Windows</text>
+        <text x="14" y="132" fill="#a78bfa" font-family="monospace" font-size="9">128 numerical cols</text>
+      </g>
+
+      <!-- Embeddings Extraction -->
+      <g transform="translate(200, 0)">
+        <rect width="180" height="150" rx="8" fill="#1e1b4b" stroke="#a855f7" />
+        <text x="14" y="24" fill="#f3e8ff" font-family="sans-serif" font-size="11" font-weight="bold">Semantic Embeddings</text>
+        <rect x="14" y="38" width="152" height="20" rx="4" fill="#3b0764" />
+        <text x="20" y="52" fill="#e9d5ff" font-family="monospace" font-size="9">text-embedding-3-small</text>
+        <rect x="14" y="64" width="152" height="20" rx="4" fill="#3b0764" />
+        <text x="20" y="78" fill="#e9d5ff" font-family="monospace" font-size="9">dim = 1536 float32</text>
+        <rect x="14" y="90" width="152" height="20" rx="4" fill="#3b0764" />
+        <text x="20" y="104" fill="#e9d5ff" font-family="monospace" font-size="9">L2 Norm Normalized</text>
+        <text x="14" y="132" fill="#d8b4fe" font-family="monospace" font-size="9">Cosine similarity ready</text>
+      </g>
+
+      <!-- Feast Feature Store -->
+      <g transform="translate(400, 0)">
+        <rect width="180" height="150" rx="8" fill="#1e1b4b" stroke="#10b981" />
+        <text x="14" y="24" fill="#d1fae5" font-family="sans-serif" font-size="11" font-weight="bold">Feast Feature Store</text>
+        <rect x="14" y="38" width="152" height="20" rx="4" fill="#064e3b" />
+        <text x="20" y="52" fill="#6ee7b7" font-family="monospace" font-size="9">Online: Redis (p99 &lt; 2ms)</text>
+        <rect x="14" y="64" width="152" height="20" rx="4" fill="#064e3b" />
+        <text x="20" y="78" fill="#6ee7b7" font-family="monospace" font-size="9">Offline: Snowflake / S3</text>
+        <rect x="14" y="90" width="152" height="20" rx="4" fill="#064e3b" />
+        <text x="20" y="104" fill="#6ee7b7" font-family="monospace" font-size="9">Point-in-Time Correct</text>
+        <text x="14" y="132" fill="#34d399" font-family="monospace" font-size="9">No data leakage</text>
+      </g>
+    </g>
+
+    <!-- Point-in-time correctness banner -->
+    <g transform="translate(0, 215)">
+      <rect width="580" height="90" rx="8" fill="#090d16" stroke="#1e293b" />
+      <text x="15" y="25" fill="#a78bfa" font-family="monospace" font-size="11">from feast import FeatureStore</text>
+      <text x="15" y="48" fill="#f8fafc" font-family="monospace" font-size="11">store = FeatureStore(repo_path=".")</text>
+      <text x="15" y="68" fill="#34d399" font-family="monospace" font-size="11">training_df = store.get_historical_features(entity_df=events, features=feature_refs).to_df()</text>
+    </g>
+  </g>
+</svg>

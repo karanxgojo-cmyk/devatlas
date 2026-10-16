@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="ml4-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+  </defs>
+  <rect width="700" height="450" rx="16" fill="url(#ml4-bg)" />
+  <rect x="30" y="30" width="640" height="390" rx="12" fill="#090d16" stroke="#334155" stroke-width="1.5" />
+  
+  <g transform="translate(60, 60)">
+    <rect x="0" y="0" width="120" height="26" rx="13" fill="#065f46" stroke="#10b981" />
+    <text x="14" y="17" fill="#a7f3d0" font-family="monospace" font-size="11" font-weight="bold">STAGE 04</text>
+    <text x="135" y="19" fill="#f8fafc" font-family="sans-serif" font-size="20" font-weight="bold">Model Evaluation &amp; RAG Triad Benchmarks</text>
+
+    <!-- Evaluation Matrix & Curves -->
+    <g transform="translate(0, 45)">
+      <!-- ROC AUC Chart -->
+      <g transform="translate(0, 0)">
+        <rect width="280" height="155" rx="8" fill="#0f172a" stroke="#10b981" />
+        <text x="15" y="24" fill="#a7f3d0" font-family="sans-serif" font-size="11" font-weight="bold">ROC Curve (AUC = 0.984)</text>
+        <line x1="30" y1="35" x2="30" y2="125" stroke="#334155" stroke-width="1.5" />
+        <line x1="30" y1="125" x2="260" y2="125" stroke="#334155" stroke-width="1.5" />
+        <!-- Diagonal -->
+        <line x1="30" y1="125" x2="260" y2="35" stroke="#475569" stroke-dasharray="3 3" />
+        <!-- ROC curve -->
+        <path d="M 30 125 Q 40 45 260 35" stroke="#10b981" stroke-width="2.5" fill="none" />
+        <text x="130" y="95" fill="#34d399" font-family="monospace" font-size="10">True Positive Rate: 98%</text>
+        <text x="130" y="112" fill="#94a3b8" font-family="monospace" font-size="10">False Positive: 1.2%</text>
+      </g>
+
+      <!-- RAG Triad Scorecard -->
+      <g transform="translate(300, 0)">
+        <rect width="280" height="155" rx="8" fill="#0f172a" stroke="#059669" />
+        <text x="15" y="24" fill="#6ee7b7" font-family="sans-serif" font-size="11" font-weight="bold">RAG Triad Hallucination Audit</text>
+        
+        <rect x="15" y="36" width="250" height="26" rx="4" fill="#064e3b" />
+        <text x="22" y="53" fill="#a7f3d0" font-family="monospace" font-size="10">Context Relevance: 0.94 / 1.0</text>
+
+        <rect x="15" y="68" width="250" height="26" rx="4" fill="#064e3b" />
+        <text x="22" y="85" fill="#a7f3d0" font-family="monospace" font-size="10">Groundedness (Faithful): 0.96</text>
+
+        <rect x="15" y="100" width="250" height="26" rx="4" fill="#064e3b" />
+        <text x="22" y="117" fill="#a7f3d0" font-family="monospace" font-size="10">Answer Relevance: 0.95 / 1.0</text>
+
+        <text x="15" y="142" fill="#34d399" font-family="monospace" font-size="9">&bull; Zero ungrounded hallucinated facts</text>
+      </g>
+    </g>
+
+    <!-- Metrics summary -->
+    <g transform="translate(0, 220)">
+      <rect width="580" height="85" rx="8" fill="#090d16" stroke="#1e293b" />
+      <text x="15" y="25" fill="#38bdf8" font-family="monospace" font-size="11">Automated Evaluation Suite &bull; Ragas + TruLens</text>
+      <text x="15" y="48" fill="#f8fafc" font-family="monospace" font-size="10">F1 Score: 0.942 &bull; Precision: 0.961 &bull; Recall: 0.924 &bull; Specificity: 0.988</text>
+      <text x="15" y="68" fill="#10b981" font-family="monospace" font-size="10">Model validated and approved for production staging deployment</text>
+    </g>
+  </g>
+</svg>

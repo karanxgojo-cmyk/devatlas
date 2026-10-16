@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="ml3-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+  </defs>
+  <rect width="700" height="450" rx="16" fill="url(#ml3-bg)" />
+  <rect x="30" y="30" width="640" height="390" rx="12" fill="#090d16" stroke="#334155" stroke-width="1.5" />
+  
+  <g transform="translate(60, 60)">
+    <rect x="0" y="0" width="120" height="26" rx="13" fill="#3730a3" stroke="#6366f1" />
+    <text x="14" y="17" fill="#e0e7ff" font-family="monospace" font-size="11" font-weight="bold">STAGE 03</text>
+    <text x="135" y="19" fill="#f8fafc" font-family="sans-serif" font-size="20" font-weight="bold">Model Training &amp; Convergence</text>
+
+    <!-- Training Curve Graph & Tensor Dimensions -->
+    <g transform="translate(0, 45)">
+      <!-- Loss Curve Canvas -->
+      <g transform="translate(0, 0)">
+        <rect width="320" height="155" rx="8" fill="#0f172a" stroke="#4338ca" />
+        <text x="15" y="24" fill="#a5b4fc" font-family="sans-serif" font-size="11" font-weight="bold">Training vs Validation Loss</text>
+        
+        <!-- Axes -->
+        <line x1="30" y1="35" x2="30" y2="125" stroke="#334155" stroke-width="1.5" />
+        <line x1="30" y1="125" x2="300" y2="125" stroke="#334155" stroke-width="1.5" />
+        
+        <!-- Loss Curves -->
+        <!-- Train Loss (Blue) -->
+        <path d="M 35 45 Q 80 80 150 100 T 290 115" stroke="#38bdf8" stroke-width="2.5" fill="none" />
+        <!-- Val Loss (Purple) -->
+        <path d="M 35 50 Q 85 90 150 105 T 290 110" stroke="#c084fc" stroke-width="2" stroke-dasharray="4 2" fill="none" />
+
+        <text x="170" y="70" fill="#38bdf8" font-family="monospace" font-size="9">&bull; Train Loss: 0.142</text>
+        <text x="170" y="85" fill="#c084fc" font-family="monospace" font-size="9">&bull; Val Loss: 0.168</text>
+        <text x="240" y="140" fill="#64748b" font-family="monospace" font-size="9">Epoch 20</text>
+      </g>
+
+      <!-- Hyperparameters & Optimizer -->
+      <g transform="translate(340, 0)">
+        <rect width="240" height="155" rx="8" fill="#0f172a" stroke="#6366f1" />
+        <text x="15" y="24" fill="#c7d2fe" font-family="sans-serif" font-size="11" font-weight="bold">Optimizer &amp; Schedule</text>
+        <rect x="15" y="36" width="210" height="22" rx="4" fill="#1e1b4b" />
+        <text x="22" y="51" fill="#818cf8" font-family="monospace" font-size="9">AdamW (lr=2e-5, wd=0.01)</text>
+
+        <rect x="15" y="64" width="210" height="22" rx="4" fill="#1e1b4b" />
+        <text x="22" y="79" fill="#818cf8" font-family="monospace" font-size="9">CosineAnnealingWarmRestarts</text>
+
+        <rect x="15" y="92" width="210" height="22" rx="4" fill="#1e1b4b" />
+        <text x="22" y="107" fill="#818cf8" font-family="monospace" font-size="9">fp16 Mixed Precision (AMP)</text>
+
+        <text x="15" y="138" fill="#10b981" font-family="monospace" font-size="10">&bull; EarlyStopping (patience=3)</text>
+      </g>
+    </g>
+
+    <!-- PyTorch Training Loop snippet -->
+    <g transform="translate(0, 220)">
+      <rect width="580" height="85" rx="8" fill="#090d16" stroke="#1e293b" />
+      <text x="15" y="24" fill="#60a5fa" font-family="monospace" font-size="11">scaler = torch.cuda.amp.GradScaler()</text>
+      <text x="15" y="44" fill="#f8fafc" font-family="monospace" font-size="11">with torch.autocast(device_type="cuda", dtype=torch.float16):</text>
+      <text x="15" y="64" fill="#34d399" font-family="monospace" font-size="11">    loss = criterion(outputs, labels); scaler.scale(loss).backward(); scaler.step(optimizer)</text>
+    </g>
+  </g>
+</svg>

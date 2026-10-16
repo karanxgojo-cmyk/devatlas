@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="ml1-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#3b0764" />
+    </linearGradient>
+  </defs>
+  <rect width="700" height="450" rx="16" fill="url(#ml1-bg)" />
+  <rect x="30" y="30" width="640" height="390" rx="12" fill="#090d16" stroke="#334155" stroke-width="1.5" />
+  
+  <g transform="translate(60, 60)">
+    <rect x="0" y="0" width="120" height="26" rx="13" fill="#581c87" stroke="#a855f7" />
+    <text x="14" y="17" fill="#f3e8ff" font-family="monospace" font-size="11" font-weight="bold">STAGE 01</text>
+    <text x="135" y="19" fill="#f8fafc" font-family="sans-serif" font-size="20" font-weight="bold">Data Preparation &amp; Hygiene</text>
+
+    <!-- Data Ingestion Pipeline -->
+    <g transform="translate(0, 45)">
+      <rect width="580" height="150" rx="10" fill="#1e1b4b" stroke="#6366f1" />
+      
+      <!-- Raw Data Source -->
+      <g transform="translate(20, 20)">
+        <rect width="140" height="110" rx="8" fill="#0f172a" stroke="#818cf8" />
+        <text x="12" y="22" fill="#c7d2fe" font-family="sans-serif" font-size="11" font-weight="bold">Raw Telemetry</text>
+        <text x="12" y="42" fill="#94a3b8" font-family="monospace" font-size="9">JSON, CSV, Kafka</text>
+        <text x="12" y="60" fill="#ef4444" font-family="monospace" font-size="9">&bull; Null values</text>
+        <text x="12" y="78" fill="#f59e0b" font-family="monospace" font-size="9">&bull; Outliers</text>
+        <text x="12" y="96" fill="#94a3b8" font-family="monospace" font-size="9">10M rows/day</text>
+      </g>
+
+      <path d="M 170 75 L 200 75" stroke="#a855f7" stroke-width="2" />
+
+      <!-- Cleaning Engine -->
+      <g transform="translate(210, 20)">
+        <rect width="160" height="110" rx="8" fill="#0f172a" stroke="#a855f7" />
+        <text x="12" y="22" fill="#e9d5ff" font-family="sans-serif" font-size="11" font-weight="bold">Deduplication &amp; Impute</text>
+        <text x="12" y="42" fill="#c084fc" font-family="monospace" font-size="9">Great Expectations</text>
+        <text x="12" y="60" fill="#10b981" font-family="monospace" font-size="9">&bull; Schema Validation</text>
+        <text x="12" y="78" fill="#10b981" font-family="monospace" font-size="9">&bull; Median Imputation</text>
+        <text x="12" y="96" fill="#10b981" font-family="monospace" font-size="9">&bull; Z-score Clip</text>
+      </g>
+
+      <path d="M 380 75 L 410 75" stroke="#a855f7" stroke-width="2" />
+
+      <!-- Parquet Storage -->
+      <g transform="translate(420, 20)">
+        <rect width="140" height="110" rx="8" fill="#0f172a" stroke="#10b981" />
+        <text x="12" y="22" fill="#a7f3d0" font-family="sans-serif" font-size="11" font-weight="bold">Clean Data Lake</text>
+        <text x="12" y="42" fill="#34d399" font-family="monospace" font-size="9">Apache Parquet</text>
+        <text x="12" y="60" fill="#94a3b8" font-family="monospace" font-size="9">Snappy Compressed</text>
+        <text x="12" y="78" fill="#6ee7b7" font-family="monospace" font-size="9">&bull; Zero schema drift</text>
+        <text x="12" y="96" fill="#a7f3d0" font-family="monospace" font-size="9">Deterministic split</text>
+      </g>
+    </g>
+
+    <!-- Code Block -->
+    <g transform="translate(0, 215)">
+      <rect width="580" height="90" rx="8" fill="#090d16" stroke="#1e293b" />
+      <text x="15" y="25" fill="#c084fc" font-family="monospace" font-size="11"># PySpark / Polars Data Validation</text>
+      <text x="15" y="45" fill="#f8fafc" font-family="monospace" font-size="11">df = pl.read_parquet("s3://devatlas-ml/raw/*.parquet").filter(pl.col("latency_ms") &gt; 0)</text>
+      <text x="15" y="65" fill="#34d399" font-family="monospace" font-size="11">df_clean = df.with_columns(pl.col("feature").fill_null(strategy="forward"))</text>
+    </g>
+  </g>
+</svg>

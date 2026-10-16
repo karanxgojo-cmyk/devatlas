@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="p5-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+  </defs>
+  <rect width="700" height="450" rx="16" fill="url(#p5-bg)" />
+  <rect x="30" y="30" width="640" height="390" rx="12" fill="#090d16" stroke="#334155" stroke-width="1.5" />
+  
+  <g transform="translate(60, 60)">
+    <rect x="0" y="0" width="120" height="26" rx="13" fill="#065f46" stroke="#10b981" />
+    <text x="14" y="17" fill="#a7f3d0" font-family="monospace" font-size="11" font-weight="bold">STAGE 05</text>
+    <text x="135" y="19" fill="#f8fafc" font-family="sans-serif" font-size="20" font-weight="bold">Lighthouse 100 &amp; Empirical Measurement</text>
+
+    <!-- Four Score Gauges -->
+    <g transform="translate(0, 45)">
+      <!-- Performance Gauge -->
+      <g transform="translate(25, 0)">
+        <circle cx="50" cy="50" r="42" stroke="#064e3b" stroke-width="8" fill="none" />
+        <circle cx="50" cy="50" r="42" stroke="#10b981" stroke-width="8" stroke-dasharray="264" stroke-dashoffset="0" fill="none" />
+        <text x="32" y="58" fill="#10b981" font-family="sans-serif" font-size="26" font-weight="bold">100</text>
+        <text x="14" y="112" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="bold">Performance</text>
+      </g>
+
+      <!-- Accessibility Gauge -->
+      <g transform="translate(170, 0)">
+        <circle cx="50" cy="50" r="42" stroke="#064e3b" stroke-width="8" fill="none" />
+        <circle cx="50" cy="50" r="42" stroke="#10b981" stroke-width="8" stroke-dasharray="264" stroke-dashoffset="0" fill="none" />
+        <text x="32" y="58" fill="#10b981" font-family="sans-serif" font-size="26" font-weight="bold">100</text>
+        <text x="14" y="112" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="bold">Accessibility</text>
+      </g>
+
+      <!-- Best Practices Gauge -->
+      <g transform="translate(315, 0)">
+        <circle cx="50" cy="50" r="42" stroke="#064e3b" stroke-width="8" fill="none" />
+        <circle cx="50" cy="50" r="42" stroke="#10b981" stroke-width="8" stroke-dasharray="264" stroke-dashoffset="0" fill="none" />
+        <text x="32" y="58" fill="#10b981" font-family="sans-serif" font-size="26" font-weight="bold">100</text>
+        <text x="12" y="112" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="bold">Best Practices</text>
+      </g>
+
+      <!-- SEO Gauge -->
+      <g transform="translate(460, 0)">
+        <circle cx="50" cy="50" r="42" stroke="#064e3b" stroke-width="8" fill="none" />
+        <circle cx="50" cy="50" r="42" stroke="#10b981" stroke-width="8" stroke-dasharray="264" stroke-dashoffset="0" fill="none" />
+        <text x="32" y="58" fill="#10b981" font-family="sans-serif" font-size="26" font-weight="bold">100</text>
+        <text x="38" y="112" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="bold">SEO</text>
+      </g>
+    </g>
+
+    <!-- Real-World Core Web Vitals Card -->
+    <g transform="translate(0, 195)">
+      <rect width="580" height="110" rx="10" fill="#0f172a" stroke="#1e293b" />
+      <text x="20" y="26" fill="#94a3b8" font-family="sans-serif" font-size="12" font-weight="bold">Measured Production Telemetry:</text>
+      
+      <g transform="translate(20, 42)">
+        <rect width="165" height="50" rx="6" fill="#1e293b" />
+        <text x="12" y="20" fill="#94a3b8" font-family="monospace" font-size="10">Largest Contentful Paint</text>
+        <text x="12" y="40" fill="#10b981" font-family="sans-serif" font-size="16" font-weight="bold">LCP 0.8s &bull; Fast</text>
+      </g>
+
+      <g transform="translate(205, 42)">
+        <rect width="165" height="50" rx="6" fill="#1e293b" />
+        <text x="12" y="20" fill="#94a3b8" font-family="monospace" font-size="10">Interaction to Next Paint</text>
+        <text x="12" y="40" fill="#10b981" font-family="sans-serif" font-size="16" font-weight="bold">INP 42ms &bull; Good</text>
+      </g>
+
+      <g transform="translate(390, 42)">
+        <rect width="170" height="50" rx="6" fill="#1e293b" />
+        <text x="12" y="20" fill="#94a3b8" font-family="monospace" font-size="10">Cumulative Layout Shift</text>
+        <text x="12" y="40" fill="#10b981" font-family="sans-serif" font-size="16" font-weight="bold">CLS 0.00 &bull; Stable</text>
+      </g>
+    </g>
+  </g>
+</svg>

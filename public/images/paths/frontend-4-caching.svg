@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="p4-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+  </defs>
+  <rect width="700" height="450" rx="16" fill="url(#p4-bg)" />
+  <rect x="30" y="30" width="640" height="390" rx="12" fill="#090d16" stroke="#334155" stroke-width="1.5" />
+  
+  <g transform="translate(60, 60)">
+    <rect x="0" y="0" width="120" height="26" rx="13" fill="#1e3a8a" stroke="#3b82f6" />
+    <text x="14" y="17" fill="#93c5fd" font-family="monospace" font-size="11" font-weight="bold">STAGE 04</text>
+    <text x="135" y="19" fill="#f8fafc" font-family="sans-serif" font-size="20" font-weight="bold">HTTP Caching &amp; CDN Delivery Architecture</text>
+
+    <!-- Request flow from User -> CDN Edge -> Origin Shield -> Server -->
+    <g transform="translate(0, 50)">
+      <!-- Client -->
+      <rect x="0" y="15" width="105" height="110" rx="8" fill="#0f172a" stroke="#64748b" />
+      <text x="12" y="38" fill="#f8fafc" font-family="sans-serif" font-size="11" font-weight="bold">Browser</text>
+      <text x="12" y="56" fill="#94a3b8" font-family="monospace" font-size="9">Local Cache</text>
+      <text x="12" y="74" fill="#38bdf8" font-family="monospace" font-size="9">If-None-Match</text>
+      <text x="12" y="92" fill="#10b981" font-family="monospace" font-size="9">304 Cached</text>
+
+      <!-- Flow Arrow 1 -->
+      <path d="M 105 70 L 155 70" stroke="#38bdf8" stroke-width="2" />
+      <text x="110" y="60" fill="#38bdf8" font-family="monospace" font-size="9">GET</text>
+
+      <!-- CDN Edge -->
+      <rect x="155" y="0" width="135" height="140" rx="8" fill="#1e3a8a" stroke="#3b82f6" stroke-width="1.5" />
+      <text x="12" y="24" fill="#93c5fd" font-family="sans-serif" font-size="11" font-weight="bold">CDN Anycast Edge</text>
+      <text x="12" y="44" fill="#dbeafe" font-family="monospace" font-size="9">300+ Global PoPs</text>
+      <line x1="12" y1="52" x2="123" y2="52" stroke="#2563eb" />
+      <text x="12" y="68" fill="#f8fafc" font-family="monospace" font-size="9">Cache HIT &rarr; 8ms</text>
+      <text x="12" y="86" fill="#60a5fa" font-family="monospace" font-size="9">s-maxage=86400</text>
+      <text x="12" y="104" fill="#bfdbfe" font-family="monospace" font-size="9">stale-while-revalidate</text>
+      <text x="12" y="122" fill="#34d399" font-family="monospace" font-size="9">Brotli (br) Comp</text>
+
+      <!-- Flow Arrow 2 -->
+      <path d="M 290 70 L 340 70" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3 3" />
+      <text x="296" y="60" fill="#f59e0b" font-family="monospace" font-size="9">MISS</text>
+
+      <!-- Origin Next.js Server -->
+      <rect x="340" y="15" width="125" height="110" rx="8" fill="#0f172a" stroke="#6366f1" />
+      <text x="12" y="38" fill="#f8fafc" font-family="sans-serif" font-size="11" font-weight="bold">Origin Server</text>
+      <text x="12" y="56" fill="#a5b4fc" font-family="monospace" font-size="9">Next.js 15 App</text>
+      <text x="12" y="74" fill="#818cf8" font-family="monospace" font-size="9">ETag Generation</text>
+      <text x="12" y="92" fill="#c7d2fe" font-family="monospace" font-size="9">Incremental ISR</text>
+
+      <!-- Database -->
+      <path d="M 465 70 L 495 70" stroke="#6366f1" stroke-width="2" />
+      <rect x="495" y="25" width="85" height="90" rx="8" fill="#090d16" stroke="#475569" />
+      <text x="12" y="38" fill="#e2e8f0" font-family="sans-serif" font-size="10" font-weight="bold">DB / MDX</text>
+      <text x="12" y="56" fill="#94a3b8" font-family="monospace" font-size="9">PostgreSQL</text>
+      <text x="12" y="74" fill="#10b981" font-family="monospace" font-size="9">Read Replica</text>
+    </g>
+
+    <!-- Cache Header Specification Table -->
+    <g transform="translate(0, 215)">
+      <rect width="580" height="95" rx="8" fill="#0f172a" stroke="#1e293b" />
+      <text x="15" y="24" fill="#60a5fa" font-family="monospace" font-size="11">Cache-Control: public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800</text>
+      <text x="15" y="48" fill="#94a3b8" font-family="monospace" font-size="10">&bull; Browser caches for 1 hour &bull; Edge servers cache for 24 hours</text>
+      <text x="15" y="68" fill="#10b981" font-family="monospace" font-size="10">&bull; Serves cached content instantly while asynchronously revalidating in background</text>
+    </g>
+  </g>
+</svg>

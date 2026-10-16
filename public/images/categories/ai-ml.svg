@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="ai-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#2e1065" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" rx="12" fill="url(#ai-bg)" />
+
+  <!-- Multi-head Attention Matrix & Neural Graph -->
+  <g transform="translate(50, 40)">
+    <text x="0" y="20" fill="#c084fc" font-family="monospace" font-size="12" font-weight="bold">// TRANSFORMER Q-K-V ATTENTION</text>
+    <text x="0" y="40" fill="#f8fafc" font-family="sans-serif" font-size="16" font-weight="bold">Self-Attention &amp; Vector Embeddings</text>
+
+    <!-- Query Key Value vectors -->
+    <rect x="0" y="60" width="120" height="140" rx="8" fill="#1e1b4b" stroke="#6366f1" />
+    <text x="12" y="85" fill="#a5b4fc" font-family="monospace" font-size="12" font-weight="bold">Query [Q]</text>
+    <rect x="12" y="98" width="96" height="8" rx="2" fill="#4338ca" />
+    <rect x="12" y="112" width="96" height="8" rx="2" fill="#4f46e5" />
+    <rect x="12" y="126" width="96" height="8" rx="2" fill="#6366f1" />
+    <rect x="12" y="140" width="96" height="8" rx="2" fill="#818cf8" />
+    <text x="12" y="175" fill="#94a3b8" font-family="monospace" font-size="10">dim = 768</text>
+
+    <text x="135" y="130" fill="#e2e8f0" font-family="sans-serif" font-size="20">&times;</text>
+
+    <rect x="160" y="60" width="120" height="140" rx="8" fill="#1e1b4b" stroke="#8b5cf6" />
+    <text x="12" y="85" fill="#c084fc" font-family="monospace" font-size="12" font-weight="bold" transform="translate(160, 0)">Key [K]ᵀ</text>
+    <rect x="172" y="98" width="96" height="8" rx="2" fill="#6d28d9" />
+    <rect x="172" y="112" width="96" height="8" rx="2" fill="#7c3aed" />
+    <rect x="172" y="126" width="96" height="8" rx="2" fill="#8b5cf6" />
+    <rect x="172" y="140" width="96" height="8" rx="2" fill="#a78bfa" />
+    <text x="172" y="175" fill="#94a3b8" font-family="monospace" font-size="10">dim = 768</text>
+
+    <!-- Attention Heatmap -->
+    <g transform="translate(320, 60)">
+      <rect width="180" height="140" rx="8" fill="#090d16" stroke="#c084fc" />
+      <text x="12" y="24" fill="#e2e8f0" font-family="sans-serif" font-size="11" font-weight="bold">Softmax(QKᵀ / √d)</text>
+      <!-- Grid cells -->
+      <rect x="15" y="35" width="22" height="22" rx="3" fill="#a855f7" />
+      <rect x="42" y="35" width="22" height="22" rx="3" fill="#6b21a8" />
+      <rect x="69" y="35" width="22" height="22" rx="3" fill="#3b0764" />
+      <rect x="96" y="35" width="22" height="22" rx="3" fill="#d8b4fe" />
+      <rect x="123" y="35" width="22" height="22" rx="3" fill="#7e22ce" />
+
+      <rect x="15" y="62" width="22" height="22" rx="3" fill="#581c87" />
+      <rect x="42" y="62" width="22" height="22" rx="3" fill="#c084fc" />
+      <rect x="69" y="62" width="22" height="22" rx="3" fill="#9333ea" />
+      <rect x="96" y="62" width="22" height="22" rx="3" fill="#3b0764" />
+      <rect x="123" y="62" width="22" height="22" rx="3" fill="#e9d5ff" />
+
+      <rect x="15" y="89" width="22" height="22" rx="3" fill="#7e22ce" />
+      <rect x="42" y="89" width="22" height="22" rx="3" fill="#3b0764" />
+      <rect x="69" y="89" width="22" height="22" rx="3" fill="#c084fc" />
+      <rect x="96" y="89" width="22" height="22" rx="3" fill="#a855f7" />
+      <rect x="123" y="89" width="22" height="22" rx="3" fill="#6b21a8" />
+      <text x="15" y="128" fill="#a78bfa" font-family="monospace" font-size="10">Self-Attention Weights</text>
+    </g>
+
+    <!-- Vector Store / HNSW Graph Representation -->
+    <g transform="translate(0, 220)">
+      <rect width="500" height="90" rx="8" fill="#111827" stroke="#374151" />
+      <circle cx="50" cy="45" r="14" fill="#3b82f6" />
+      <circle cx="150" cy="30" r="16" fill="#8b5cf6" />
+      <circle cx="250" cy="55" r="14" fill="#ec4899" />
+      <circle cx="360" cy="35" r="18" fill="#10b981" />
+      <circle cx="450" cy="50" r="12" fill="#f59e0b" />
+      <line x1="50" y1="45" x2="150" y2="30" stroke="#60a5fa" stroke-width="2" />
+      <line x1="150" y1="30" x2="250" y2="55" stroke="#a78bfa" stroke-width="2" />
+      <line x1="250" y1="55" x2="360" y2="35" stroke="#f472b6" stroke-width="2" />
+      <line x1="360" y1="35" x2="450" y2="50" stroke="#34d399" stroke-width="2" />
+      <text x="20" y="78" fill="#9ca3af" font-family="monospace" font-size="10">HNSW Proximity Graph (Cosine Similarity &gt; 0.92)</text>
+    </g>
+  </g>
+</svg>
