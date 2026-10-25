@@ -21,7 +21,7 @@
     <rect x="12" y="140" width="96" height="8" rx="2" fill="#818cf8" />
     <text x="12" y="175" fill="#94a3b8" font-family="monospace" font-size="10">dim = 768</text>
 
-    <text x="135" y="130" fill="#e2e8f0" font-family="sans-serif" font-size="20">&times;</text>
+    <text x="135" y="130" fill="#e2e8f0" font-family="sans-serif" font-size="20">×</text>
 
     <rect x="160" y="60" width="120" height="140" rx="8" fill="#1e1b4b" stroke="#8b5cf6" />
     <text x="12" y="85" fill="#c084fc" font-family="monospace" font-size="12" font-weight="bold" transform="translate(160, 0)">Key [K]ᵀ</text>

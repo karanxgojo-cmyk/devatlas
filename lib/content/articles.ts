@@ -1,6 +1,7 @@
 import { Article } from '@/types/content';
+import { BEGINNER_ARTICLES } from './beginner-articles';
 
-export const ARTICLES: Article[] = [
+const BASE_ARTICLES: Article[] = [
   // 1. Web Dev: Next.js 15 & React 19 Architecture
   {
     slug: 'nextjs-15-react-19-architecture',
@@ -1902,6 +1903,8 @@ This provides the holy grail of web architecture: **static-level sub-15ms edge d
 `,
   },
 ];
+
+export const ARTICLES: Article[] = [...BEGINNER_ARTICLES, ...BASE_ARTICLES];
 
 export function getAllArticles(): Article[] {
   return ARTICLES;

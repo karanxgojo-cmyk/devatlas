@@ -18,8 +18,8 @@
       <!-- Step 1: Parse -->
       <rect x="0" y="0" width="125" height="150" rx="8" fill="#0f172a" stroke="#3b82f6" />
       <text x="12" y="25" fill="#60a5fa" font-family="sans-serif" font-size="12" font-weight="bold">1. PARSE</text>
-      <text x="12" y="48" fill="#f8fafc" font-family="sans-serif" font-size="11">HTML &rarr; DOM</text>
-      <text x="12" y="66" fill="#f8fafc" font-family="sans-serif" font-size="11">CSS &rarr; CSSOM</text>
+      <text x="12" y="48" fill="#f8fafc" font-family="sans-serif" font-size="11">HTML → DOM</text>
+      <text x="12" y="66" fill="#f8fafc" font-family="sans-serif" font-size="11">CSS → CSSOM</text>
       <line x1="12" y1="80" x2="113" y2="80" stroke="#1e293b" />
       <text x="12" y="100" fill="#94a3b8" font-family="monospace" font-size="10">Tokenization</text>
       <text x="12" y="118" fill="#94a3b8" font-family="monospace" font-size="10">Tree building</text>
@@ -62,8 +62,8 @@
     <g transform="translate(0, 220)">
       <rect width="580" height="75" rx="8" fill="#111827" stroke="#374151" />
       <text x="20" y="28" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="bold">Core Web Vitals Impact Analysis:</text>
-      <text x="20" y="52" fill="#38bdf8" font-family="monospace" font-size="11">&bull; LCP: Keep critical server payload &lt; 50kB to render paint candidate in &lt; 1.2s</text>
-      <text x="320" y="52" fill="#10b981" font-family="monospace" font-size="11">&bull; INP: Yield long tasks via scheduler.yield()</text>
+      <text x="20" y="52" fill="#38bdf8" font-family="monospace" font-size="11">• LCP: Keep critical server payload &lt; 50kB to render paint candidate in &lt; 1.2s</text>
+      <text x="320" y="52" fill="#10b981" font-family="monospace" font-size="11">• INP: Yield long tasks via scheduler.yield()</text>
     </g>
   </g>
 </svg>

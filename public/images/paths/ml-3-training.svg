@@ -30,8 +30,8 @@
         <!-- Val Loss (Purple) -->
         <path d="M 35 50 Q 85 90 150 105 T 290 110" stroke="#c084fc" stroke-width="2" stroke-dasharray="4 2" fill="none" />
 
-        <text x="170" y="70" fill="#38bdf8" font-family="monospace" font-size="9">&bull; Train Loss: 0.142</text>
-        <text x="170" y="85" fill="#c084fc" font-family="monospace" font-size="9">&bull; Val Loss: 0.168</text>
+        <text x="170" y="70" fill="#38bdf8" font-family="monospace" font-size="9">• Train Loss: 0.142</text>
+        <text x="170" y="85" fill="#c084fc" font-family="monospace" font-size="9">• Val Loss: 0.168</text>
         <text x="240" y="140" fill="#64748b" font-family="monospace" font-size="9">Epoch 20</text>
       </g>
 
@@ -48,7 +48,7 @@
         <rect x="15" y="92" width="210" height="22" rx="4" fill="#1e1b4b" />
         <text x="22" y="107" fill="#818cf8" font-family="monospace" font-size="9">fp16 Mixed Precision (AMP)</text>
 
-        <text x="15" y="138" fill="#10b981" font-family="monospace" font-size="10">&bull; EarlyStopping (patience=3)</text>
+        <text x="15" y="138" fill="#10b981" font-family="monospace" font-size="10">• EarlyStopping (patience=3)</text>
       </g>
     </g>
 

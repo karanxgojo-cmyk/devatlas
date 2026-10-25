@@ -46,34 +46,34 @@ export function PathProgressTracker({ path }: PathProgressTrackerProps) {
   return (
     <div className="space-y-8">
       {/* Progress Header Card */}
-      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-6 sm:p-8 shadow-xs">
+      <div className="rounded-2xl border border-[#DCCBB6] bg-[#FFF5E6] p-6 sm:p-8 shadow-sm">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#174B35]">
                 Learning Progress
               </span>
               {isAllCompleted && (
-                <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
-                  <Trophy className="w-3 h-3" />
+                <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[#174B35] bg-[#D8E9DA] px-2.5 py-0.5 rounded-full border border-[#174B35]/30">
+                  <Trophy className="w-3 h-3 text-[#FF8A24]" />
                   Path Completed!
                 </span>
               )}
             </div>
-            <p className="text-sm text-slate-600 dark:text-slate-400">
+            <p className="text-sm text-[#332A26]">
               {completedCount} of {totalSteps} modules completed ({progressPercent}%)
             </p>
           </div>
 
-          <div className="text-sm font-bold text-slate-900 dark:text-white bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700">
+          <div className="text-sm font-bold text-[#174B35] bg-white px-3.5 py-1.5 rounded-xl border border-[#DCCBB6] shadow-xs">
             {progressPercent}% Complete
           </div>
         </div>
 
         {/* Dynamic Progress Bar */}
-        <div className="w-full h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+        <div className="w-full h-3 bg-white rounded-full overflow-hidden border border-[#DCCBB6]">
           <div
-            className="h-full bg-gradient-to-r from-blue-600 to-indigo-600 transition-all duration-300 ease-out"
+            className="h-full bg-gradient-to-r from-[#174B35] via-[#FF8A24] to-[#F04B35] transition-all duration-300 ease-out"
             style={{ width: `${progressPercent}%` }}
           />
         </div>
@@ -81,30 +81,30 @@ export function PathProgressTracker({ path }: PathProgressTrackerProps) {
 
       {/* Sequential Modules List */}
       <div className="space-y-4">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+        <h2 className="text-xl font-bold text-[#174B35]">
           Curated Learning Modules
         </h2>
 
-        <div className="relative border-l-2 border-slate-200 dark:border-slate-800 ml-4 pl-6 space-y-6">
+        <div className="relative border-l-2 border-[#DCCBB6] ml-4 pl-6 space-y-6">
           {path.steps.map((step) => {
             const isCompleted = completedSteps.includes(step.stepNumber);
 
             return (
               <div
                 key={step.stepNumber}
-                className={`relative rounded-xl border p-5 transition-all duration-200 ${
+                className={`relative rounded-2xl border p-5 transition-all duration-200 ${
                   isCompleted
-                    ? 'border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/30 dark:bg-emerald-950/20'
-                    : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700'
+                    ? 'border-[#174B35] bg-[#D8E9DA]/40 shadow-xs'
+                    : 'border-[#DCCBB6] bg-white hover:border-[#174B35] shadow-xs'
                 }`}
               >
                 {/* Step indicator node on vertical timeline */}
                 <button
                   onClick={() => toggleStep(step.stepNumber)}
-                  className={`absolute -left-[37px] top-5 w-6 h-6 rounded-full flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 ${
+                  className={`absolute -left-[37px] top-5 w-6 h-6 rounded-full flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#174B35] ${
                     isCompleted
-                      ? 'bg-emerald-600 text-white shadow-xs'
-                      : 'bg-white dark:bg-slate-900 text-slate-400 border-2 border-slate-300 dark:border-slate-700 hover:border-blue-500'
+                      ? 'bg-[#174B35] text-white shadow-xs'
+                      : 'bg-[#FFF5E6] text-[#597260] border-2 border-[#DCCBB6] hover:border-[#174B35]'
                   }`}
                   aria-label={
                     isCompleted
@@ -123,21 +123,21 @@ export function PathProgressTracker({ path }: PathProgressTrackerProps) {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+                      <span className="text-xs font-bold text-[#174B35] uppercase tracking-wider">
                         Step {step.stepNumber}
                       </span>
-                      <span className="text-xs text-slate-400">•</span>
-                      <span className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
+                      <span className="text-[#DCCBB6]">•</span>
+                      <span className="text-xs text-[#597260] flex items-center gap-1 font-medium">
+                        <Clock className="w-3 h-3 text-[#FF8A24]" />
                         {step.estimatedMinutes} min
                       </span>
                     </div>
 
-                    <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1">
+                    <h3 className="text-base font-bold text-[#174B35] mb-1">
                       {step.title}
                     </h3>
 
-                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">
+                    <p className="text-sm text-[#332A26] mb-3 leading-relaxed">
                       {step.summary}
                     </p>
 
@@ -145,7 +145,7 @@ export function PathProgressTracker({ path }: PathProgressTrackerProps) {
                       {step.keyConcepts.map((concept) => (
                         <span
                           key={concept}
-                          className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400"
+                          className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#FFF5E6] text-[#332A26] border border-[#DCCBB6]"
                         >
                           {concept}
                         </span>
@@ -156,9 +156,9 @@ export function PathProgressTracker({ path }: PathProgressTrackerProps) {
                   <div className="shrink-0 flex items-center gap-3">
                     <Link
                       href={`/articles/${step.articleSlug}`}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white transition-colors shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-[#174B35] hover:bg-[#123a29] text-[#FFF5E6] transition-colors shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#174B35]"
                     >
-                      <span>Read Guide</span>
+                      <span>Study Guide</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>

@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { CodeBlock } from './code-block';
 import { useFontSize } from '@/components/providers/font-size-provider';
+import { CodeBlock } from './code-block';
 import { Hash } from 'lucide-react';
 
 interface MarkdownRendererProps {
@@ -10,32 +10,43 @@ interface MarkdownRendererProps {
 }
 
 export function MarkdownRenderer({ content }: MarkdownRendererProps) {
-  const { fontSizeClass } = useFontSize();
+  const { fontSize } = useFontSize();
 
-  // Parse lines into tokens: headings, code blocks, lists, paragraphs, tables
-  const lines = content.trim().split('\n');
+  const fontSizeClass =
+    fontSize === 'sm'
+      ? 'text-sm leading-relaxed'
+      : fontSize === 'lg'
+      ? 'text-lg leading-loose'
+      : 'text-base leading-relaxed';
+
+  // Parse custom markdown-like blocks
+  const lines = content.split('\n');
   const elements: React.ReactNode[] = [];
   let i = 0;
 
   while (i < lines.length) {
     const line = lines[i];
 
-    // 1. Code blocks: ```language
-    if (line.trim().startsWith('```')) {
-      const langMatch = line.trim().match(/^```([a-zA-Z0-9_-]*)/);
-      const language = langMatch && langMatch[1] ? langMatch[1] : 'typescript';
+    // 1. Code blocks: ```ts filename
+    if (line.startsWith('```')) {
+      const match = line.slice(3).trim().split(' ');
+      const language = match[0] || 'typescript';
+      const filename = match[1];
+
       const codeLines: string[] = [];
       i++;
-      while (i < lines.length && !lines[i].trim().startsWith('```')) {
+      while (i < lines.length && !lines[i].startsWith('```')) {
         codeLines.push(lines[i]);
         i++;
       }
       i++; // skip closing ```
+
       elements.push(
         <CodeBlock
           key={`code-${i}`}
           code={codeLines.join('\n')}
           language={language}
+          filename={filename}
         />
       );
       continue;
@@ -50,7 +61,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
       }
       elements.push(
         <div key={`table-${i}`} className="my-6 overflow-x-auto" data-lenis-prevent>
-          <table className="w-full text-left border-collapse border border-slate-200 dark:border-slate-800 text-sm">
+          <table className="w-full text-left border-collapse border border-[#DFD0BE] text-sm">
             <tbody>
               {tableLines.map((tLine, rIdx) => {
                 const cells = tLine
@@ -68,17 +79,17 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
                     key={rIdx}
                     className={
                       isHeader
-                        ? 'bg-slate-100 dark:bg-slate-800/80 font-semibold text-slate-900 dark:text-white'
-                        : 'border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40'
+                        ? 'bg-[#FFF8EE] font-semibold text-[#174B35]'
+                        : 'border-b border-[#DFD0BE] hover:bg-[#FFF8EE]/60 text-[#49372F]'
                     }
                   >
                     {cells.map((cell, cIdx) =>
                       isHeader ? (
-                        <th key={cIdx} className="p-3 border-r border-slate-200 dark:border-slate-800">
+                        <th key={cIdx} className="p-3 border-r border-[#DFD0BE] text-[#174B35]">
                           {renderInline(cell)}
                         </th>
                       ) : (
-                        <td key={cIdx} className="p-3 border-r border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">
+                        <td key={cIdx} className="p-3 border-r border-[#DFD0BE] text-[#49372F]">
                           {renderInline(cell)}
                         </td>
                       )
@@ -101,12 +112,12 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
         <h2
           key={`h2-${i}`}
           id={id}
-          className="group flex items-center gap-2 text-2xl font-bold tracking-tight text-slate-900 dark:text-white mt-10 mb-4 pt-4 border-t border-slate-100 dark:border-slate-800/60 scroll-mt-24"
+          className="group flex items-center gap-2 text-2xl font-bold tracking-tight text-[#174B35] mt-10 mb-4 pt-4 border-t border-[#DFD0BE] scroll-mt-24"
         >
           <span>{title}</span>
           <a
             href={`#${id}`}
-            className="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-blue-600 transition-opacity p-1"
+            className="opacity-0 group-hover:opacity-100 text-[#795548] hover:text-[#F04B35] transition-opacity p-1"
             aria-label={`Link to section ${title}`}
           >
             <Hash className="w-4 h-4" />
@@ -124,12 +135,12 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
         <h3
           key={`h3-${i}`}
           id={id}
-          className="group flex items-center gap-2 text-lg font-bold text-slate-800 dark:text-slate-200 mt-6 mb-3 scroll-mt-24"
+          className="group flex items-center gap-2 text-lg font-bold text-[#174B35] mt-6 mb-3 scroll-mt-24"
         >
           <span>{title}</span>
           <a
             href={`#${id}`}
-            className="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-blue-600 transition-opacity p-1"
+            className="opacity-0 group-hover:opacity-100 text-[#597260] hover:text-[#F04B35] transition-opacity p-1"
             aria-label={`Link to subsection ${title}`}
           >
             <Hash className="w-3.5 h-3.5" />
@@ -146,7 +157,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
       elements.push(
         <blockquote
           key={`quote-${i}`}
-          className="my-4 pl-4 border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/20 p-3 rounded-r-lg text-slate-700 dark:text-slate-300 italic text-sm"
+          className="my-4 pl-4 border-l-4 border-l-[#174B35] bg-[#FFF8EE] p-4 rounded-r-xl text-[#49372F] italic text-sm border border-[#DFD0BE]"
         >
           {renderInline(quoteText)}
         </blockquote>
@@ -163,7 +174,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
         i++;
       }
       elements.push(
-        <ul key={`ul-${i}`} className="my-4 space-y-2 list-disc list-inside text-slate-700 dark:text-slate-300 pl-2">
+        <ul key={`ul-${i}`} className="my-4 space-y-2 list-disc list-inside text-[#49372F] pl-2">
           {listItems.map((item, idx) => (
             <li key={idx} className="leading-relaxed">
               {renderInline(item)}
@@ -182,7 +193,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
         i++;
       }
       elements.push(
-        <ol key={`ol-${i}`} className="my-4 space-y-2 list-decimal list-inside text-slate-700 dark:text-slate-300 pl-2">
+        <ol key={`ol-${i}`} className="my-4 space-y-2 list-decimal list-inside text-[#49372F] pl-2">
           {listItems.map((item, idx) => (
             <li key={idx} className="leading-relaxed">
               {renderInline(item)}
@@ -201,14 +212,14 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
 
     // 8. Standard paragraph
     elements.push(
-      <p key={`p-${i}`} className={`my-4 text-slate-700 dark:text-slate-300 ${fontSizeClass}`}>
+      <p key={`p-${i}`} className={`my-4 text-[#49372F] ${fontSizeClass}`}>
         {renderInline(line)}
       </p>
     );
     i++;
   }
 
-  return <div className="article-body prose dark:prose-invert max-w-none">{elements}</div>;
+  return <div className="article-body prose max-w-none text-[#49372F]">{elements}</div>;
 }
 
 function slugify(text: string): string {
@@ -237,7 +248,7 @@ function renderInline(text: string): React.ReactNode {
     const token = match[0];
     if (token.startsWith('**') && token.endsWith('**')) {
       parts.push(
-        <strong key={`b-${keyIndex++}`} className="font-semibold text-slate-900 dark:text-white">
+        <strong key={`b-${keyIndex++}`} className="font-bold text-[#174B35]">
           {token.slice(2, -2)}
         </strong>
       );
@@ -245,7 +256,7 @@ function renderInline(text: string): React.ReactNode {
       parts.push(
         <code
           key={`c-${keyIndex++}`}
-          className="font-mono text-xs px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 font-semibold"
+          className="font-mono text-xs px-1.5 py-0.5 rounded bg-[#F2B8C6]/30 text-[#49372F] font-semibold border border-[#DFD0BE]"
         >
           {token.slice(1, -1)}
         </code>
@@ -259,7 +270,7 @@ function renderInline(text: string): React.ReactNode {
             href={textMatch[2]}
             target={textMatch[2].startsWith('http') ? '_blank' : undefined}
             rel={textMatch[2].startsWith('http') ? 'noopener noreferrer' : undefined}
-            className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+            className="text-[#F04B35] hover:text-[#FF8A24] underline font-medium"
           >
             {textMatch[1]}
           </a>

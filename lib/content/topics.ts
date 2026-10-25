@@ -8,7 +8,7 @@ export const TOPICS: Topic[] = [
     description: 'Deep dives into modern full-stack web engineering. Master Next.js App Router, React 19, CSS Container Queries, browser rendering pipelines, Core Web Vitals, and secure API design.',
     icon: 'Globe',
     featuredTags: ['Next.js', 'React 19', 'Performance', 'CSS', 'Security', 'TypeScript'],
-    learningPathSlugs: ['frontend-performance-essentials'],
+    learningPathSlugs: ['web-development-roadmap', 'frontend-performance-essentials'],
   },
   {
     slug: 'ai-ml',
@@ -17,7 +17,7 @@ export const TOPICS: Topic[] = [
     description: 'Bridge theory and production. Explore neural architectures, attention mechanisms, feature engineering, vector indexing with HNSW, RAG evaluation frameworks, and model serving.',
     icon: 'Brain',
     featuredTags: ['Transformers', 'Vector Search', 'Pipelines', 'LLMs', 'Scikit-Learn', 'RAG'],
-    learningPathSlugs: ['first-ml-pipeline'],
+    learningPathSlugs: ['ai-ml-roadmap', 'first-ml-pipeline'],
   },
   {
     slug: 'computer-science',
@@ -26,7 +26,7 @@ export const TOPICS: Topic[] = [
     description: 'Fundamental computing principles that underpin modern software systems. Dive into virtual memory, B-trees vs LSM-trees, Raft consensus, and TCP/UDP/QUIC network transport.',
     icon: 'Cpu',
     featuredTags: ['OS Internals', 'Distributed Systems', 'Databases', 'Networking', 'Algorithms'],
-    learningPathSlugs: ['system-design-foundations'],
+    learningPathSlugs: ['computer-science-roadmap', 'system-design-foundations'],
   },
   {
     slug: 'engineering-projects',

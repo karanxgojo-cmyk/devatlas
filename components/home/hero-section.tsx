@@ -1,11 +1,12 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { SearchBar } from '@/components/search/search-bar';
+import { SafeImage } from '@/components/ui/safe-image';
 import { Sparkles, Compass, Zap } from 'lucide-react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
@@ -20,6 +21,8 @@ export function HeroSection() {
     if (typeof window === 'undefined') return;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
+
+    gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
       // Staggered entrance animation on first load
@@ -60,6 +63,42 @@ export function HeroSection() {
           { opacity: 1, x: 0, scale: 1, duration: 0.9, ease: 'power2.out' },
           '-=0.8'
         );
+
+      // Scroll-linked parallax exit
+      const heroEl = heroRef.current;
+      if (heroEl) {
+        // Left column text fades and scales down as user scrolls away
+        const leftCol = heroEl.querySelector('.lg\\:col-span-7');
+        if (leftCol) {
+          gsap.to(leftCol, {
+            y: -60,
+            opacity: 0.3,
+            scale: 0.97,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: heroEl,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 0.5,
+            },
+          });
+        }
+
+        // Right column image parallax
+        const rightCol = heroEl.querySelector('.lg\\:col-span-5');
+        if (rightCol) {
+          gsap.to(rightCol, {
+            y: -80,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: heroEl,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 0.5,
+            },
+          });
+        }
+      }
     }, heroRef);
 
     return () => ctx.revert();
@@ -68,21 +107,24 @@ export function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative overflow-hidden pt-12 pb-16 md:pt-20 md:pb-24 border-b border-slate-200 dark:border-slate-800 bg-gradient-to-b from-blue-50/40 via-slate-50 to-white dark:from-slate-950 dark:via-[#090d16] dark:to-[#0b1120]"
+      className="cylindrical-section relative pt-12 pb-16 md:pt-20 md:pb-24 border-b border-[#416C53] bg-[#174B35] text-[#FFF5E6]"
     >
-      {/* Subtle background grid pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.025] dark:opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(59,130,246,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.5) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-        }}
-      />
+      {/* Background decorations contained without clipping 3D transform */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Subtle background grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,245,230,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,245,230,0.15) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+          }}
+        />
 
-      {/* Radial glow */}
-      <div className="absolute -top-20 -left-20 w-96 h-96 bg-blue-400/10 dark:bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-20 right-0 w-80 h-80 bg-indigo-500/8 dark:bg-indigo-600/8 rounded-full blur-3xl pointer-events-none" />
+        {/* Decorative accents */}
+        <div className="absolute -top-20 -left-20 w-96 h-96 bg-[#FF8A24]/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-20 right-0 w-80 h-80 bg-[#D8E9DA]/10 rounded-full blur-3xl" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -91,19 +133,19 @@ export function HeroSection() {
             {/* Tagline & Badge */}
             <div
               ref={badgeRef}
-              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100/80 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 text-xs font-semibold tracking-wide"
+              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFF5E6]/10 text-[#FFF5E6] border border-[#D8E9DA]/30 text-xs font-semibold tracking-wide shadow-xs"
             >
-              <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+              <Sparkles className="w-3.5 h-3.5 text-[#FF8A24]" aria-hidden="true" />
               <span>DevAtlas &bull; Learn. Build. Share.</span>
             </div>
 
             {/* Main Headline */}
             <h1
               ref={headlineRef}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-serif font-extrabold tracking-tight text-[#FFF5E6] leading-[1.12]"
             >
               Understand technology.{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
+              <span className="text-[#FF8A24] italic">
                 Build better things.
               </span>
             </h1>
@@ -111,7 +153,7 @@ export function HeroSection() {
             {/* Subheading */}
             <p
               ref={subRef}
-              className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+              className="text-base sm:text-lg font-serif-body text-[#D8E9DA] leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal"
             >
               A high-performance technical knowledge platform. Discover rigorous engineering guides, follow structured learning paths with synchronized architecture diagrams, and master production systems.
             </p>
@@ -119,21 +161,21 @@ export function HeroSection() {
             {/* Working Search Bar */}
             <div ref={searchRef} className="pt-2 max-w-xl mx-auto lg:mx-0">
               <SearchBar placeholder="Search 18+ guides (e.g. Next.js 15, Raft, Lenis, AVIF)..." />
-              <div className="flex items-center justify-center lg:justify-start gap-2 mt-3 text-xs text-slate-500 dark:text-slate-400 flex-wrap">
-                <span className="font-semibold text-slate-700 dark:text-slate-300">Quick explore:</span>
-                <Link href="/explore?q=Lenis" className="hover:text-blue-600 underline">
+              <div className="flex items-center justify-center lg:justify-start gap-2 mt-3 text-xs text-[#D8E9DA] flex-wrap">
+                <span className="font-semibold text-[#FFF5E6]">Quick explore:</span>
+                <Link href="/explore?q=Lenis" className="hover:text-[#FF8A24] underline transition-colors">
                   Lenis Physics
                 </Link>
                 <span>&bull;</span>
-                <Link href="/explore?q=RSC" className="hover:text-blue-600 underline">
+                <Link href="/explore?q=RSC" className="hover:text-[#FF8A24] underline transition-colors">
                   React 19 RSC
                 </Link>
                 <span>&bull;</span>
-                <Link href="/explore?q=AVIF" className="hover:text-blue-600 underline">
+                <Link href="/explore?q=AVIF" className="hover:text-[#FF8A24] underline transition-colors">
                   AVIF / Zero CLS
                 </Link>
                 <span>&bull;</span>
-                <Link href="/explore?q=Kafka" className="hover:text-blue-600 underline">
+                <Link href="/explore?q=Kafka" className="hover:text-[#FF8A24] underline transition-colors">
                   Kafka Events
                 </Link>
               </div>
@@ -143,64 +185,66 @@ export function HeroSection() {
             <div ref={actionsRef} className="pt-4 flex items-center justify-center lg:justify-start gap-4">
               <Link
                 href="/explore"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs font-bold bg-[#F04B35] hover:bg-[#d93d28] text-[#FFFFFF] shadow-md hover:shadow-lg transition-all"
               >
                 <Compass className="w-4 h-4" />
                 <span>Explore Content Library</span>
               </Link>
               <Link
                 href="/paths/frontend-performance-essentials"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs font-bold bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition-colors shadow-xs"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs font-bold bg-[#FFF5E6] hover:bg-[#f5e6d0] text-[#174B35] border border-[#D9CDBB] transition-colors shadow-xs"
               >
-                <Zap className="w-4 h-4 text-amber-500" />
+                <Zap className="w-4 h-4 text-[#FF8A24]" />
                 <span>Start Learning Path</span>
               </Link>
             </div>
           </div>
 
-          {/* Right Column: High-Tech Hero Architecture Diagram */}
+          {/* Right Column: Hero Architecture Diagram with Morphing Container */}
           <div ref={imageRef} className="lg:col-span-5 relative">
-            <div className="relative rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-950 p-2 shadow-2xl overflow-hidden group">
+            <div className="card-morph relative rounded-2xl border border-[#D9CDBB] bg-[#FFF5E6] p-2.5 shadow-2xl overflow-hidden group">
               {/* Terminal top bar */}
-              <div className="flex items-center gap-1.5 px-3 pt-2 pb-1.5">
-                <span className="w-3 h-3 rounded-full bg-red-500/80" />
-                <span className="w-3 h-3 rounded-full bg-amber-500/80" />
-                <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
-                <span className="ml-2 text-[10px] font-mono text-slate-500">devatlas-engine.tsx</span>
+              <div className="flex items-center gap-1.5 px-3 pt-2 pb-2 border-b border-[#D9CDBB]/60">
+                <span className="w-3 h-3 rounded-full bg-[#F04B35]" />
+                <span className="w-3 h-3 rounded-full bg-[#FF8A24]" />
+                <span className="w-3 h-3 rounded-full bg-[#174B35]" />
+                <span className="ml-2 text-[10px] font-mono text-[#332A26]">devatlas-engine.tsx</span>
               </div>
-              <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden">
-                <Image
+              <div className="image-morph-container relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-[#F8F1E6] border border-[#D9CDBB]">
+                <SafeImage
                   src="/images/hero/hero-architecture.svg"
                   alt="DevAtlas high performance engine architecture diagram"
+                  fallbackCategory="web-dev"
+                  fallbackTitle="DevAtlas Core Engine"
                   fill
                   sizes="(max-width: 1024px) 100vw, 500px"
-                  className="object-contain group-hover:scale-[1.02] transition-transform duration-700"
+                  className="image-morph-target object-contain"
                   priority
                 />
               </div>
-              <div className="p-3 bg-slate-900/90 rounded-b-xl border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                <span className="flex items-center gap-1.5 text-emerald-400">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block" />
+              <div className="p-3 bg-[#FFF5E6] rounded-b-xl border-t border-[#D9CDBB]/60 flex items-center justify-between text-[11px] text-[#332A26] font-mono">
+                <span className="flex items-center gap-1.5 text-[#174B35] font-semibold">
+                  <span className="w-2 h-2 rounded-full bg-[#174B35] animate-ping inline-block" />
                   Live Engine Pipeline
                 </span>
-                <span>Lenis + ScrollTrigger Synchronized</span>
+                <span className="text-[#F04B35] font-semibold">Lenis + ScrollTrigger Synchronized</span>
               </div>
             </div>
 
             {/* Floating stat badges */}
-            <div className="absolute -bottom-4 -left-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2.5 shadow-lg hidden lg:flex items-center gap-2.5">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xs font-black">18</div>
+            <div className="absolute -bottom-4 -left-4 bg-[#FFF5E6] border border-[#D9CDBB] rounded-xl px-4 py-2.5 shadow-lg hidden lg:flex items-center gap-2.5">
+              <div className="w-8 h-8 bg-[#174B35] rounded-lg flex items-center justify-center text-[#FFF5E6] text-xs font-black">18</div>
               <div>
-                <p className="text-xs font-bold text-slate-900 dark:text-white">Engineering Guides</p>
-                <p className="text-[10px] text-slate-500">4 disciplines</p>
+                <p className="text-xs font-bold text-[#174B35]">Engineering Guides</p>
+                <p className="text-[10px] text-[#597260]">4 disciplines</p>
               </div>
             </div>
 
-            <div className="absolute -top-4 -right-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2.5 shadow-lg hidden lg:flex items-center gap-2.5">
-              <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center text-white text-xs font-black">2</div>
+            <div className="absolute -top-4 -right-4 bg-[#FFF5E6] border border-[#D9CDBB] rounded-xl px-4 py-2.5 shadow-lg hidden lg:flex items-center gap-2.5">
+              <div className="w-8 h-8 bg-[#F04B35] rounded-lg flex items-center justify-center text-[#FFFFFF] text-xs font-black">6</div>
               <div>
-                <p className="text-xs font-bold text-slate-900 dark:text-white">Learning Paths</p>
-                <p className="text-[10px] text-slate-500">5 stages each</p>
+                <p className="text-xs font-bold text-[#174B35]">Learning Paths</p>
+                <p className="text-[10px] text-[#597260]">roadmap.sh verified</p>
               </div>
             </div>
           </div>

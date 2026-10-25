@@ -53,6 +53,18 @@ export interface Topic {
   learningPathSlugs: string[];
 }
 
+export type LearningTier = 'Fundamentals' | 'Beginner' | 'Intermediate' | 'Advanced' | 'Practical Projects';
+
+export type ResourceType = 'Article' | 'Documentation' | 'Video' | 'Tutorial' | 'Interactive Course';
+
+export interface StageResource {
+  title: string;
+  source: string; // e.g. 'MDN Web Docs', 'GeeksforGeeks', 'roadmap.sh', 'freeCodeCamp', 'Official Docs', 'YouTube'
+  url: string;
+  type: ResourceType;
+  isFree?: boolean;
+}
+
 export interface PathStep {
   stepNumber: number;
   title: string;
@@ -63,6 +75,19 @@ export interface PathStep {
   keyConcepts: string[];
   image?: string;
   visualDescription?: string;
+  difficulty?: DifficultyLevel;
+  tier?: LearningTier;
+  prerequisites?: string[];
+  commonMistakes?: string[];
+  practicalExercise?: string;
+  codeSnippet?: string;
+  resources?: StageResource[];
+  roadmapUrl?: string;
+  externalReference?: {
+    title: string;
+    url: string;
+    source: 'MDN' | 'OSSU' | 'DEV' | 'GitHub';
+  };
 }
 
 export interface LearningPath {
@@ -73,6 +98,7 @@ export interface LearningPath {
   difficulty: DifficultyLevel;
   totalMinutes: number;
   category: CategorySlug;
+  roadmapReferenceUrl?: string;
   steps: PathStep[];
 }
 
@@ -82,6 +108,7 @@ export interface SearchParams {
   q?: string;
   category?: string;
   tag?: string;
+  difficulty?: string;
   sort?: SortOption;
   page?: number;
   pageSize?: number;

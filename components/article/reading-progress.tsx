@@ -41,7 +41,7 @@ export function ReadingProgress() {
       aria-valuemax={100}
     >
       <div
-        className="h-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-400 transition-[width] duration-150 ease-out"
+        className="h-full bg-[#FF8A24] transition-[width] duration-150 ease-out shadow-xs"
         style={{ width: `${progress}%` }}
       />
     </div>

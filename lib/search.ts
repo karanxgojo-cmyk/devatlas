@@ -5,6 +5,7 @@ export function searchAndFilterArticles(params: SearchParams): PaginatedResult<A
   const query = (params.q || '').trim().toLowerCase();
   const category = params.category && params.category !== 'all' ? params.category : null;
   const tag = params.tag && params.tag !== 'all' ? params.tag : null;
+  const difficulty = params.difficulty && params.difficulty !== 'all' ? params.difficulty.toLowerCase() : null;
   const sort: SortOption = params.sort || 'newest';
   const page = Math.max(1, params.page || 1);
   const pageSize = Math.max(1, params.pageSize || 6);
@@ -13,6 +14,11 @@ export function searchAndFilterArticles(params: SearchParams): PaginatedResult<A
   let filtered = ARTICLES.filter((article) => {
     // Category match
     if (category && article.category !== category) {
+      return false;
+    }
+
+    // Difficulty level match
+    if (difficulty && article.difficulty.toLowerCase() !== difficulty) {
       return false;
     }
 
@@ -40,7 +46,9 @@ export function searchAndFilterArticles(params: SearchParams): PaginatedResult<A
   // 2. Sort
   filtered = [...filtered].sort((a, b) => {
     if (sort === 'popular') {
-      return b.views - a.views;
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
     }
 
     if (sort === 'reading-time-asc') {

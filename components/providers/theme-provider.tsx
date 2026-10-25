@@ -15,7 +15,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>('system');
-  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('dark');
+  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -23,6 +23,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const savedTheme = localStorage.getItem('devatlas-theme') as Theme | null;
     if (savedTheme && ['light', 'dark', 'system'].includes(savedTheme)) {
       setThemeState(savedTheme);
+    } else {
+      setThemeState('system');
     }
   }, []);
 
@@ -31,9 +33,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
-    const updateTheme = () => {
-      let activeTheme: 'light' | 'dark' = 'dark';
-
+    const resolveAndApply = () => {
+      let activeTheme: 'light' | 'dark' = 'light';
       if (theme === 'system') {
         activeTheme = mediaQuery.matches ? 'dark' : 'light';
       } else {
@@ -44,14 +45,31 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
       if (activeTheme === 'dark') {
         document.documentElement.classList.add('dark');
+        document.documentElement.setAttribute('data-theme', 'dark');
       } else {
         document.documentElement.classList.remove('dark');
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+
+      // Notify embedded iframes (e.g., Meng To Sketchbook template)
+      try {
+        const iframes = document.querySelectorAll('iframe');
+        iframes.forEach((iframe) => {
+          iframe.contentWindow?.postMessage({ type: 'devatlas-theme-change', theme: activeTheme }, '*');
+        });
+      } catch (e) {}
+    };
+
+    resolveAndApply();
+
+    const handleMediaChange = () => {
+      if (theme === 'system') {
+        resolveAndApply();
       }
     };
 
-    updateTheme();
-    mediaQuery.addEventListener('change', updateTheme);
-    return () => mediaQuery.removeEventListener('change', updateTheme);
+    mediaQuery.addEventListener('change', handleMediaChange);
+    return () => mediaQuery.removeEventListener('change', handleMediaChange);
   }, [theme, mounted]);
 
   const setTheme = (newTheme: Theme) => {
@@ -78,3 +96,4 @@ export function useTheme() {
   }
   return context;
 }
+

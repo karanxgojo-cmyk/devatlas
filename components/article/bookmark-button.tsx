@@ -27,10 +27,10 @@ export function BookmarkButton({
     return (
       <button
         onClick={handleClick}
-        className={`p-2 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 ${
+        className={`p-2 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#174B35] ${
           saved
-            ? 'text-blue-600 bg-blue-50 dark:bg-blue-950/60 dark:text-blue-400'
-            : 'text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
+            ? 'text-[#F04B35] bg-[#FFF5E6]'
+            : 'text-[#597260] hover:text-[#174B35] hover:bg-[#FFF5E6]'
         } ${className}`}
         aria-label={saved ? 'Remove from saved resources' : 'Save article'}
         aria-pressed={saved}
@@ -44,15 +44,15 @@ export function BookmarkButton({
   return (
     <button
       onClick={handleClick}
-      className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-medium border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 ${
+      className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#174B35] ${
         saved
-          ? 'bg-blue-50 dark:bg-blue-950/60 border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300'
-          : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'
+          ? 'bg-[#FFF5E6] border-[#F04B35]/50 text-[#F04B35]'
+          : 'bg-white border-[#DCCBB6] text-[#332A26] hover:bg-[#FFF5E6] hover:border-[#174B35]'
       } ${className}`}
       aria-label={saved ? 'Remove from saved resources' : 'Save article'}
       aria-pressed={saved}
     >
-      <Bookmark className={`w-3.5 h-3.5 ${saved ? 'fill-current text-blue-600' : ''}`} aria-hidden="true" />
+      <Bookmark className={`w-3.5 h-3.5 ${saved ? 'fill-current text-[#F04B35]' : 'text-[#597260]'}`} aria-hidden="true" />
       <span>{saved ? 'Saved' : 'Save for later'}</span>
     </button>
   );

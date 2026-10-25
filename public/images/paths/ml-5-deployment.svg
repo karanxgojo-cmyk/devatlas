@@ -56,8 +56,8 @@
     <g transform="translate(0, 220)">
       <rect width="580" height="85" rx="8" fill="#090d16" stroke="#1e293b" />
       <text x="15" y="25" fill="#38bdf8" font-family="monospace" font-size="11">&gt; curl -X POST https://api.devatlas.engineering/v1/models/predictor:predict</text>
-      <text x="15" y="48" fill="#f8fafc" font-family="monospace" font-size="10">HTTP/2 200 OK &bull; latency: 12ms &bull; token_throughput: 120 tok/sec</text>
-      <text x="15" y="68" fill="#10b981" font-family="monospace" font-size="10">Production deployment complete &bull; Model active and serving live traffic</text>
+      <text x="15" y="48" fill="#f8fafc" font-family="monospace" font-size="10">HTTP/2 200 OK • latency: 12ms • token_throughput: 120 tok/sec</text>
+      <text x="15" y="68" fill="#10b981" font-family="monospace" font-size="10">Production deployment complete • Model active and serving live traffic</text>
     </g>
   </g>
 </svg>

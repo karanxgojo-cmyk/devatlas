@@ -1,0 +1,60 @@
+/* ThreeUI Community Cylindrical Gallery Stylesheet
+ * Adapted for DevAtlas Editorial Design System
+ * MIT License (Meng To / ThreeUI Community)
+ */
+
+.threeui-background.gallery {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  background-color: #4D1938;
+  background-image: radial-gradient(rgba(255, 245, 230, 0.12) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.gallery__canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none;
+}
+
+/* Accessible CSS Fallback when WebGL is unavailable or motion is reduced */
+.gallery__css-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 900px;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #63284F 0%, #4D1938 100%);
+}
+
+.gallery__css-cylinder {
+  position: relative;
+  width: 280px;
+  height: 180px;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery__css-panel {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 245, 230, 0.2);
+  background-color: #63284F;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+}

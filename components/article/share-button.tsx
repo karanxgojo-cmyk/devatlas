@@ -42,17 +42,17 @@ export function ShareButton({ title, url, className = '' }: ShareButtonProps) {
   return (
     <button
       onClick={handleShare}
-      className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 ${className}`}
+      className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold border border-[#DCCBB6] bg-white text-[#332A26] hover:bg-[#FFF5E6] hover:border-[#174B35] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#174B35] ${className}`}
       aria-label="Share article"
     >
       {copied ? (
         <>
-          <Check className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
-          <span className="text-emerald-600 dark:text-emerald-400">Link copied!</span>
+          <Check className="w-3.5 h-3.5 text-[#174B35]" aria-hidden="true" />
+          <span className="text-[#174B35] font-bold">Link copied!</span>
         </>
       ) : (
         <>
-          <Share2 className="w-3.5 h-3.5" aria-hidden="true" />
+          <Share2 className="w-3.5 h-3.5 text-[#597260]" aria-hidden="true" />
           <span>Share</span>
         </>
       )}

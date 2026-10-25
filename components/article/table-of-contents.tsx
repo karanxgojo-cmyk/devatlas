@@ -64,15 +64,15 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
 
   return (
     <nav
-      className="sticky top-24 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xs p-5 shadow-xs"
+      className="sticky top-24 rounded-xl border border-[#DFD0BE] bg-[#FFF8EE] p-5 shadow-xs"
       aria-label="Table of contents"
     >
-      <div className="flex items-center gap-2 mb-4 text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-white">
-        <ListTree className="w-4 h-4 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+      <div className="flex items-center gap-2 mb-4 text-xs font-semibold uppercase tracking-wider text-[#174B35]">
+        <ListTree className="w-4 h-4 text-[#F04B35]" aria-hidden="true" />
         <span>On This Page</span>
       </div>
 
-      <ul className="space-y-2 text-sm border-l border-slate-200 dark:border-slate-800 ml-1">
+      <ul className="space-y-2 text-sm border-l border-[#DFD0BE] ml-1">
         {headings.map((heading) => {
           const isActive = activeId === heading.id;
           return (
@@ -83,10 +83,10 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
               <a
                 href={`#${heading.id}`}
                 onClick={(e) => handleScrollTo(e, heading.id)}
-                className={`block py-1 text-xs transition-colors rounded-r-sm -ml-px border-l-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 ${
+                className={`block py-1 text-xs transition-colors rounded-r-sm -ml-px border-l-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#174B35] ${
                   isActive
-                    ? 'border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 font-semibold'
-                    : 'border-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-400'
+                    ? 'border-[#F04B35] text-[#F04B35] font-bold'
+                    : 'border-transparent text-[#49372F] hover:text-[#F04B35] hover:border-[#F04B35]/40'
                 }`}
                 aria-current={isActive ? 'location' : undefined}
               >

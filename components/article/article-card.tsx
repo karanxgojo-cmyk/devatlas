@@ -1,44 +1,38 @@
 import Link from 'next/link';
 import { Article } from '@/types/content';
 import { BookmarkButton } from './bookmark-button';
-import { Clock, Eye, Sparkles } from 'lucide-react';
+import { Clock, Sparkles } from 'lucide-react';
 
 interface ArticleCardProps {
   article: Article;
   priority?: boolean;
+  variant?: 'white' | 'cream';
 }
 
-export function ArticleCard({ article }: ArticleCardProps) {
-  const categoryColors: Record<string, string> = {
-    'web-dev': 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border-blue-200 dark:border-blue-800',
-    'ai-ml': 'bg-purple-50 text-purple-700 dark:bg-purple-950/60 dark:text-purple-300 border-purple-200 dark:border-purple-800',
-    'computer-science': 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800',
-    'engineering-projects': 'bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border-amber-200 dark:border-amber-800',
-  };
-
-  const badgeClass =
-    categoryColors[article.category] ||
-    'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border-slate-200 dark:border-slate-700';
+export function ArticleCard({ article, variant = 'white' }: ArticleCardProps) {
+  const isCream = variant === 'cream';
 
   return (
-    <article className="group relative flex flex-col justify-between rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-6 shadow-xs hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200">
+    <article
+      className="card-morph group relative flex flex-col justify-between rounded-2xl border border-[#DFD0BE] bg-[#FFF8EE] p-6 shadow-xs hover:border-[#E98898] hover:shadow-md transition-all duration-300"
+    >
       <div>
         {/* Top metadata */}
         <div className="flex items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-2 flex-wrap">
             <Link
               href={`/topics/${article.category}`}
-              className={`text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full border transition-colors hover:opacity-80 ${badgeClass}`}
+              className="text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full border border-[#DFD0BE] bg-[#F2B8C6]/50 text-[#49372F] transition-opacity hover:opacity-85 hover:bg-[#F2B8C6]"
             >
               {article.categoryName}
             </Link>
             {article.featured && (
-              <span className="inline-flex items-center gap-1 text-[10px] font-medium text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-900">
-                <Sparkles className="w-3 h-3" />
+              <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-[#49372F] bg-[#E98898]/25 px-2 py-0.5 rounded-full border border-[#E98898]">
+                <Sparkles className="w-3 h-3 text-[#F04B35]" />
                 Featured
               </span>
             )}
-            <span className="text-xs text-slate-500 dark:text-slate-400">
+            <span className="text-xs font-medium text-[#795548]">
               {article.difficulty}
             </span>
           </div>
@@ -47,17 +41,17 @@ export function ArticleCard({ article }: ArticleCardProps) {
         </div>
 
         {/* Title */}
-        <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2 mb-2 leading-snug">
+        <h3 className="text-xl font-bold font-serif text-[#174B35] group-hover:text-[#F04B35] transition-colors line-clamp-2 mb-2 leading-snug">
           <Link
             href={`/articles/${article.slug}`}
-            className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-sm"
+            className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#174B35] rounded-sm"
           >
             {article.title}
           </Link>
         </h3>
 
         {/* Summary */}
-        <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 mb-4 leading-relaxed">
+        <p className="text-sm text-[#49372F] line-clamp-3 mb-4 leading-relaxed font-normal">
           {article.summary}
         </p>
 
@@ -67,38 +61,41 @@ export function ArticleCard({ article }: ArticleCardProps) {
             <Link
               key={tag}
               href={`/explore?tag=${encodeURIComponent(tag)}`}
-              className="text-[11px] font-mono text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 px-2 py-0.5 rounded transition-colors"
+              className="text-[11px] font-mono text-[#49372F] bg-[#9DD8EB]/30 hover:bg-[#9DD8EB]/60 hover:border-[#795548]/40 px-2 py-0.5 rounded transition-colors border border-[#DFD0BE]"
             >
               #{tag}
             </Link>
           ))}
           {article.tags.length > 3 && (
-            <span className="text-[11px] font-mono text-slate-400 py-0.5">
+            <span className="text-[11px] font-mono text-[#795548] py-0.5">
               +{article.tags.length - 3}
             </span>
           )}
         </div>
       </div>
 
-      {/* Footer / Author info */}
-      <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+      {/* Footer / Author info & verified read time */}
+      <div className="pt-4 border-t border-[#DFD0BE] flex items-center justify-between text-xs text-[#795548]">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 font-bold flex items-center justify-center text-[10px] shrink-0 border border-blue-200 dark:border-blue-800">
+          <div className="w-6 h-6 rounded-full bg-[#F2B8C6]/40 text-[#49372F] font-bold flex items-center justify-center text-[10px] shrink-0 border border-[#DFD0BE]">
             {article.author.name.charAt(0)}
           </div>
-          <span className="font-medium text-slate-700 dark:text-slate-300">
+          <span className="font-medium text-[#49372F]">
             {article.author.name}
           </span>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <span className="flex items-center gap-1">
-            <Clock className="w-3.5 h-3.5" aria-hidden="true" />
-            <span>{article.readingTime}</span>
+            <Clock className="w-3.5 h-3.5 text-[#F04B35]" aria-hidden="true" />
+            <span className="text-[#49372F]">{article.readingTime}</span>
           </span>
-          <span className="flex items-center gap-1">
-            <Eye className="w-3.5 h-3.5" aria-hidden="true" />
-            <span>{article.views.toLocaleString()}</span>
+          <span className="text-[#DFD0BE]">•</span>
+          <span className="text-[11px] font-mono text-[#795548]">
+            {new Date(article.publishedAt).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+            })}
           </span>
         </div>
       </div>

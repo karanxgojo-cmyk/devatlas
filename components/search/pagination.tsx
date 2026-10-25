@@ -29,14 +29,14 @@ function PaginationContent({ currentPage, totalPages, basePath = '/explore' }: P
 
   return (
     <nav
-      className="flex items-center justify-center gap-1.5 mt-10 pt-6 border-t border-slate-200 dark:border-slate-800"
+      className="flex items-center justify-center gap-1.5 mt-10 pt-6 border-t border-[#DCCBB6]"
       aria-label="Pagination"
     >
       {/* Previous button */}
       {currentPage > 1 ? (
         <Link
           href={createPageUrl(currentPage - 1)}
-          className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+          className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium border border-[#D9CDBB] bg-[#FFF5E6] text-[#174B35] hover:bg-[#FBE2CB] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#174B35]"
           aria-label="Previous page"
         >
           <ChevronLeft className="w-4 h-4" aria-hidden="true" />
@@ -44,7 +44,7 @@ function PaginationContent({ currentPage, totalPages, basePath = '/explore' }: P
         </Link>
       ) : (
         <span
-          className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 text-slate-400 dark:text-slate-600 cursor-not-allowed opacity-60"
+          className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium border border-[#D9CDBB] bg-[#FFF5E6]/60 text-[#597260] cursor-not-allowed opacity-50"
           aria-disabled="true"
         >
           <ChevronLeft className="w-4 h-4" aria-hidden="true" />
@@ -59,7 +59,7 @@ function PaginationContent({ currentPage, totalPages, basePath = '/explore' }: P
           return isCurrent ? (
             <span
               key={p}
-              className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-xs font-bold bg-blue-600 text-white shadow-xs"
+              className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-xs font-bold bg-[#F04B35] text-[#FFFFFF] shadow-xs"
               aria-current="page"
             >
               {p}
@@ -68,7 +68,7 @@ function PaginationContent({ currentPage, totalPages, basePath = '/explore' }: P
             <Link
               key={p}
               href={createPageUrl(p)}
-              className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+              className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-xs font-medium text-[#174B35] bg-[#FFF5E6] border border-[#D9CDBB] hover:bg-[#FBE2CB] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#174B35]"
               aria-label={`Page ${p}`}
             >
               {p}
@@ -81,7 +81,7 @@ function PaginationContent({ currentPage, totalPages, basePath = '/explore' }: P
       {currentPage < totalPages ? (
         <Link
           href={createPageUrl(currentPage + 1)}
-          className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+          className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium border border-[#D9CDBB] bg-[#FFF5E6] text-[#174B35] hover:bg-[#FBE2CB] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#174B35]"
           aria-label="Next page"
         >
           <span className="hidden sm:inline">Next</span>
@@ -89,7 +89,7 @@ function PaginationContent({ currentPage, totalPages, basePath = '/explore' }: P
         </Link>
       ) : (
         <span
-          className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 text-slate-400 dark:text-slate-600 cursor-not-allowed opacity-60"
+          className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium border border-[#D9CDBB] bg-[#FFF5E6]/60 text-[#597260] cursor-not-allowed opacity-50"
           aria-disabled="true"
         >
           <span className="hidden sm:inline">Next</span>

@@ -16,39 +16,39 @@ function GithubIcon({ className = 'w-4 h-4' }: { className?: string }) {
 
 export function AuthorCard({ author }: AuthorCardProps) {
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 my-8">
-      <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 text-white font-bold text-xl flex items-center justify-center shrink-0 shadow-xs border-2 border-white dark:border-slate-800">
+    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-6 rounded-2xl border border-[#DFD0BE] bg-[#FFF8EE] my-8 shadow-sm">
+      <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#174B35] to-[#FF8A24] text-[#FFF8EE] font-bold text-xl flex items-center justify-center shrink-0 shadow-sm border-2 border-white">
         {author.name.charAt(0)}
       </div>
 
       <div className="flex-1 space-y-1">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+            <h3 className="text-sm font-bold text-[#174B35]">
               {author.name}
             </h3>
-            <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">
+            <p className="text-xs text-[#F04B35] font-semibold">
               {author.role}
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-slate-400">
+          <div className="flex items-center gap-2 text-[#795548]">
             {author.github && (
               <a
                 href={author.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-slate-900 dark:hover:text-white transition-colors p-1"
+                className="hover:text-[#174B35] transition-colors p-1"
                 aria-label={`${author.name}'s GitHub profile`}
               >
                 <GithubIcon className="w-4 h-4" />
               </a>
             )}
-            <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+            <ExternalLink className="w-3.5 h-3.5 text-[#795548]" />
           </div>
         </div>
 
-        <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed pt-1">
+        <p className="text-xs text-[#49372F] leading-relaxed">
           {author.bio}
         </p>
       </div>

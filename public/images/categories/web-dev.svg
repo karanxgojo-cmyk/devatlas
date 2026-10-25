@@ -42,21 +42,21 @@
     
     <rect x="15" y="40" width="205" height="40" rx="6" fill="#1e3a8a" opacity="0.4" stroke="#3b82f6" />
     <text x="25" y="58" fill="#93c5fd" font-family="sans-serif" font-size="11" font-weight="600">DOM + CSSOM Construction</text>
-    <text x="25" y="72" fill="#60a5fa" font-family="monospace" font-size="9">Parse HTML tokens &bull; Style Rules</text>
+    <text x="25" y="72" fill="#60a5fa" font-family="monospace" font-size="9">Parse HTML tokens • Style Rules</text>
 
     <path d="M 117 80 L 117 95" stroke="#3b82f6" stroke-width="2" />
 
     <rect x="15" y="95" width="205" height="40" rx="6" fill="#312e81" opacity="0.4" stroke="#6366f1" />
     <text x="25" y="113" fill="#c7d2fe" font-family="sans-serif" font-size="11" font-weight="600">Render Tree &amp; Layout Reflow</text>
-    <text x="25" y="127" fill="#818cf8" font-family="monospace" font-size="9">Box model metrics &bull; Geometry</text>
+    <text x="25" y="127" fill="#818cf8" font-family="monospace" font-size="9">Box model metrics • Geometry</text>
 
     <path d="M 117 135 L 117 150" stroke="#6366f1" stroke-width="2" />
 
     <rect x="15" y="150" width="205" height="40" rx="6" fill="#064e3b" opacity="0.4" stroke="#10b981" />
     <text x="25" y="168" fill="#6ee7b7" font-family="sans-serif" font-size="11" font-weight="600">Compositor &amp; GPU Paint</text>
-    <text x="25" y="182" fill="#34d399" font-family="monospace" font-size="9">transform &amp; opacity &bull; 0ms JSR</text>
+    <text x="25" y="182" fill="#34d399" font-family="monospace" font-size="9">transform &amp; opacity • 0ms JSR</text>
 
     <rect x="15" y="202" width="205" height="32" rx="6" fill="#1e293b" />
-    <text x="25" y="222" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="bold">&bull; 0 layout shifts (CLS: 0.00)</text>
+    <text x="25" y="222" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="bold">• 0 layout shifts (CLS: 0.00)</text>
   </g>
 </svg>

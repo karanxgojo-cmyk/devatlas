@@ -72,12 +72,14 @@ export function FeaturedJourneySection({ paths }: FeaturedJourneySectionProps) {
   return (
     <section
       ref={sectionRef}
-      className="py-20 border-b border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#070b12] relative overflow-hidden"
+      className="cylindrical-section py-20 border-b border-[#4D1938] bg-[#63284F] text-[#FFF5E6] relative transition-colors duration-500"
     >
-      {/* Background accent */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
-      <div className="absolute -right-40 top-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Background accents contained without breaking sticky positioning */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#FF8190]/30 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#F04B35]/20 to-transparent" />
+        <div className="absolute -right-40 top-20 w-96 h-96 bg-[#FF8190]/10 rounded-full blur-3xl" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -86,20 +88,20 @@ export function FeaturedJourneySection({ paths }: FeaturedJourneySectionProps) {
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10"
         >
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100/80 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 text-xs font-semibold mb-3">
-              <Route className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#4D1938] border border-[#803366] text-[#FF8190] text-xs font-bold mb-3">
+              <Route className="w-3.5 h-3.5 text-[#FF8A24]" />
               <span>Signature DevAtlas Experience</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-serif text-[#FFF5E6] tracking-tight">
               Curated Engineering Roadmaps
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
-              Scroll through guided, end-to-end curriculums. Watch the architecture diagram evolve as you progress through each connected stage.
+            <p className="text-sm sm:text-base font-serif-body text-[#FFF5E6]/85 mt-2 leading-relaxed">
+              Scroll through guided, end-to-end curriculums. Watch the 3D cylindrical stage gallery rotate and architecture diagrams synchronize in real-time as you progress through each connected stage.
             </p>
           </div>
 
           {/* Path Selector Tabs */}
-          <div className="flex items-center gap-2 bg-slate-200/80 dark:bg-slate-800/80 p-1 rounded-xl self-start md:self-auto border border-slate-300 dark:border-slate-700">
+          <div className="flex items-center gap-2 bg-[#4D1938] p-1.5 rounded-2xl self-start md:self-auto border border-[#803366] shadow-sm">
             {paths.slice(0, 2).map((path) => {
               const isSelected = path.slug === activePath.slug;
               const shortTitle = path.title.split(' ').slice(0, 2).join(' ');
@@ -107,10 +109,10 @@ export function FeaturedJourneySection({ paths }: FeaturedJourneySectionProps) {
                 <button
                   key={path.slug}
                   onClick={() => setSelectedPathSlug(path.slug)}
-                  className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
+                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                     isSelected
-                      ? 'bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-xs'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                      ? 'bg-[#F04B35] text-[#FFFFFF] shadow-sm'
+                      : 'text-[#FFF5E6]/75 hover:text-[#FFF5E6]'
                   }`}
                   aria-pressed={isSelected}
                 >

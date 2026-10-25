@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1760 1240" width="1760" height="1240">
+  <defs>
+    <linearGradient id="gutter-fold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="47%" stop-color="rgba(43,39,33,0)" />
+      <stop offset="49.5%" stop-color="rgba(43,39,33,0.18)" />
+      <stop offset="50%" stop-color="rgba(43,39,33,0.32)" />
+      <stop offset="50.5%" stop-color="rgba(43,39,33,0.18)" />
+      <stop offset="53%" stop-color="rgba(43,39,33,0)" />
+    </linearGradient>
+  </defs>
+
+  <!-- Left Folio (Verso) -->
+  <rect x="40" y="30" width="830" height="1180" rx="16" fill="#FFF5E6" stroke="#D9CDBB" stroke-width="2" />
+  <!-- Right Folio (Recto) -->
+  <rect x="890" y="30" width="830" height="1180" rx="16" fill="#FFF5E6" stroke="#D9CDBB" stroke-width="2" />
+
+  <!-- Center Gutter Fold Shadow -->
+  <rect x="840" y="20" width="80" height="1200" fill="url(#gutter-fold)" />
+
+  <!-- LEFT FOLIO CONTENT: Theory, Syllabus and Guidance -->
+  <g transform="translate(110, 110)">
+    <!-- Header Ribbon -->
+    <rect x="0" y="0" width="220" height="34" rx="17" fill="#63284F" />
+    <text x="20" y="22" fill="#FFF5E6" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" letter-spacing="0.15em">PLATE 04 &#8226; CURRICULUM</text>
+    
+    <text x="240" y="22" fill="#9A6A3E" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" letter-spacing="0.1em">DISTRIBUTED SYSTEMS</text>
+
+    <!-- Title & Subtitle in Serif -->
+    <text x="0" y="105" fill="#2B2721" font-family="'Instrument Serif', Georgia, serif" font-size="44" font-weight="bold">Edge Caching &amp; Stale-While-Revalidate</text>
+    <text x="0" y="148" fill="#597260" font-family="'Newsreader', Georgia, serif" font-size="22" font-style="italic">Global CDN Delivery &amp; Cache-Control Headers</text>
+
+    <!-- Duration Pill -->
+    <g transform="translate(0, 185)">
+      <rect x="0" y="0" width="130" height="28" rx="6" fill="#F8F1E6" stroke="#D9CDBB" />
+      <text x="14" y="19" fill="#174B35" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold">Est. 20 mins</text>
+      <text x="150" y="19" fill="#2B2721" font-family="'Newsreader', serif" font-size="14">Verified Open Curriculum</text>
+    </g>
+
+    <!-- Synthesis Summary -->
+    <text x="0" y="265" fill="#2B2721" font-family="'Newsreader', Georgia, serif" font-size="20" font-weight="400">
+      <tspan x="0" dy="0">Architect global low-latency content distribution with i</tspan>
+      <tspan x="0" dy="32">mmutable asset caching, stale-while-revalidate background cache </tspan>
+      <tspan x="0" dy="32">replenishment, and edge tag purging.</tspan>
+    </text>
+
+    <!-- Key Concepts Archival Stamps -->
+    <text x="0" y="410" fill="#9A6A3E" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" letter-spacing="0.15em">CORE ARCHITECTURAL PILLARS:</text>
+    <g transform="translate(0, 430)">
+      
+        <rect x="0" y="0" width="320" height="36" rx="8" fill="#F8F1E6" stroke="#D9CDBB" />
+        <circle cx="18" cy="18" r="4" fill="#FF8190" />
+        <text x="34" y="23" fill="#2B2721" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600">SWR Protocol</text>
+      
+        <rect x="340" y="0" width="320" height="36" rx="8" fill="#F8F1E6" stroke="#D9CDBB" />
+        <circle cx="358" cy="18" r="4" fill="#FF8190" />
+        <text x="374" y="23" fill="#2B2721" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600">Cache-Control</text>
+      
+        <rect x="0" y="44" width="320" height="36" rx="8" fill="#F8F1E6" stroke="#D9CDBB" />
+        <circle cx="18" cy="62" r="4" fill="#FF8190" />
+        <text x="34" y="67" fill="#2B2721" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600">Edge PoPs</text>
+      
+        <rect x="340" y="44" width="320" height="36" rx="8" fill="#F8F1E6" stroke="#D9CDBB" />
+        <circle cx="358" cy="62" r="4" fill="#FF8190" />
+        <text x="374" y="67" fill="#2B2721" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600">Tag Purging</text>
+      
+    </g>
+
+    <!-- Bottom Manuscript Rule & Folio Number -->
+    <line x1="0" y1="760" x2="680" y2="760" stroke="#D9CDBB" stroke-width="1.5" />
+    <text x="0" y="800" fill="rgba(43,39,33,0.5)" font-family="'Newsreader', serif" font-size="14" font-style="italic">DevAtlas Engineering Sketchbook &#8226; Singapore Editorial Series</text>
+    <text x="640" y="800" fill="#2B2721" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold">Folio 04v</text>
+  </g>
+
+  <!-- RIGHT FOLIO CONTENT: Architectural Blueprint Schematic & Loupe Inspection Target -->
+  <g transform="translate(960, 110)">
+    <!-- Folio Title & Figure Number -->
+    <text x="0" y="22" fill="#9A6A3E" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" letter-spacing="0.15em">FIGURE 04.A &#8226; SYSTEM SCHEMATIC</text>
+    <text x="0" y="70" fill="#2B2721" font-family="'Instrument Serif', Georgia, serif" font-size="32" font-weight="bold">Global CDN Edge Cache Invalidation Model</text>
+
+    <!-- Blueprint Canvas Inset -->
+    <rect x="0" y="95" width="680" height="520" rx="14" fill="#4D1938" stroke="#803366" stroke-width="2" />
+    
+    <!-- Schematic Header in Inset -->
+    <rect x="25" y="120" width="160" height="28" rx="6" fill="#63284F" />
+    <text x="38" y="139" fill="#FFF5E6" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold">INSPECTION TARGET</text>
+
+    <!-- Code & Architecture Text Inset (Crystal clear for Loupe at 2.3x) -->
+    <g transform="translate(35, 180)">
+      <rect width="610" height="280" rx="10" fill="#3B132B" stroke="#63284F" />
+      <rect width="610" height="34" rx="10" fill="#63284F" />
+      <circle cx="22" cy="17" r="4.5" fill="#F04B35" />
+      <circle cx="38" cy="17" r="4.5" fill="#FF8A24" />
+      <circle cx="54" cy="17" r="4.5" fill="#174B35" />
+      <text x="80" y="22" fill="#FFF5E6" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600">pipeline.architecture.ts</text>
+      
+      <!-- Code lines -->
+      
+        <text x="24" y="70" fill="#FF8190" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="500">Cache-Control: public, max-age=3600,</text>
+      
+        <text x="24" y="100" fill="#FFF5E6" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="500">               stale-while-revalidate=86400</text>
+      
+        <text x="24" y="130" fill="#FF8A24" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="500">Client -&gt; Edge Cache (HIT) -&gt; Instant 200 OK</text>
+      
+        <text x="24" y="160" fill="#FF8A24" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="500">Edge   -&gt; Origin (Background Revalidation)</text>
+      
+    </g>
+
+    <!-- Explanatory Caption -->
+    <g transform="translate(0, 645)">
+      <text x="0" y="20" fill="#2B2721" font-family="'Newsreader', serif" font-size="16" font-style="italic">
+        Drag the brass loupe over the schematic above to examine micro-architectural data flow at 2.3x magnification.
+      </text>
+      <rect x="0" y="45" width="140" height="30" rx="6" fill="#174B35" />
+      <text x="16" y="65" fill="#FFF5E6" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold">LOUPE COMPATIBLE</text>
+    </g>
+
+    <!-- Bottom Folio Number -->
+    <line x1="0" y1="760" x2="680" y2="760" stroke="#D9CDBB" stroke-width="1.5" />
+    <text x="0" y="800" fill="rgba(43,39,33,0.5)" font-family="'Newsreader', serif" font-size="14" font-style="italic">Plate 04 of 09 &#8226; Atlas Technical Spread</text>
+    <text x="635" y="800" fill="#2B2721" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold">Folio 04r</text>
+  </g>
+</svg>

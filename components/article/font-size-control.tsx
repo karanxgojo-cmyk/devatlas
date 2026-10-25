@@ -8,20 +8,20 @@ export function FontSizeControl() {
 
   return (
     <div
-      className="inline-flex items-center rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-0.5 text-xs text-slate-600 dark:text-slate-400"
+      className="inline-flex items-center rounded-lg border border-[#DCCBB6] bg-white p-0.5 text-xs text-[#332A26]"
       role="group"
       aria-label="Article text size adjustment"
     >
       <span className="sr-only">Font size</span>
-      <div className="flex items-center px-2 py-1 text-slate-400 dark:text-slate-500">
+      <div className="flex items-center px-2 py-1 text-[#597260]">
         <Type className="w-3.5 h-3.5" aria-hidden="true" />
       </div>
       <button
         onClick={() => setFontSize('sm')}
-        className={`px-2 py-1 rounded text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 ${
+        className={`px-2 py-1 rounded text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#174B35] ${
           fontSize === 'sm'
-            ? 'bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 font-bold'
-            : 'hover:text-slate-900 dark:hover:text-white'
+            ? 'bg-[#174B35] text-[#FFF5E6]'
+            : 'text-[#332A26] hover:text-[#174B35]'
         }`}
         aria-pressed={fontSize === 'sm'}
         aria-label="Small font size"
@@ -30,10 +30,10 @@ export function FontSizeControl() {
       </button>
       <button
         onClick={() => setFontSize('md')}
-        className={`px-2 py-1 rounded text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 ${
+        className={`px-2 py-1 rounded text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#174B35] ${
           fontSize === 'md'
-            ? 'bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 font-bold'
-            : 'hover:text-slate-900 dark:hover:text-white'
+            ? 'bg-[#174B35] text-[#FFF5E6]'
+            : 'text-[#332A26] hover:text-[#174B35]'
         }`}
         aria-pressed={fontSize === 'md'}
         aria-label="Standard font size"
@@ -42,10 +42,10 @@ export function FontSizeControl() {
       </button>
       <button
         onClick={() => setFontSize('lg')}
-        className={`px-2 py-1 rounded text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 ${
+        className={`px-2 py-1 rounded text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#174B35] ${
           fontSize === 'lg'
-            ? 'bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 font-bold'
-            : 'hover:text-slate-900 dark:hover:text-white'
+            ? 'bg-[#174B35] text-[#FFF5E6]'
+            : 'text-[#332A26] hover:text-[#174B35]'
         }`}
         aria-pressed={fontSize === 'lg'}
         aria-label="Large font size"

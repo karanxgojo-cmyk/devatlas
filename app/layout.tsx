@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#090d16' },
+    { media: '(prefers-color-scheme: light)', color: '#F5F0E8' },
+    { media: '(prefers-color-scheme: dark)', color: '#F5F0E8' },
   ],
   width: 'device-width',
   initialScale: 1,
@@ -80,18 +80,25 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Anti-flash theme script */}
+        {/* Anti-flash theme script - ensures immediate theme resolution with zero flicker */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
                 try {
                   var saved = localStorage.getItem('devatlas-theme');
-                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  if (saved === 'dark' || (!saved && prefersDark)) {
+                  if (saved === 'dark-navy') {
+                    saved = 'light';
+                    localStorage.setItem('devatlas-theme', 'light');
+                  }
+                  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  var isDark = saved === 'dark' || (!saved && prefersDark) || (saved === 'system' && prefersDark);
+                  if (isDark) {
                     document.documentElement.classList.add('dark');
+                    document.documentElement.setAttribute('data-theme', 'dark');
                   } else {
                     document.documentElement.classList.remove('dark');
+                    document.documentElement.setAttribute('data-theme', 'light');
                   }
                 } catch (e) {}
               })();
@@ -99,11 +106,12 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="flex flex-col min-h-screen bg-slate-50 dark:bg-[#090d16] text-slate-900 dark:text-slate-100 font-sans selection:bg-blue-600 selection:text-white">
+      <body className="flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] font-sans selection:bg-[#F04B35] selection:text-white relative transition-colors duration-200">
+        <div className="sketchbook-wash" aria-hidden="true" />
         <SkipLink />
         <RootProviders>
           <Header />
-          <div className="flex-1 flex flex-col">{children}</div>
+          <div className="flex-1 flex flex-col relative z-0">{children}</div>
           <Footer />
         </RootProviders>
       </body>

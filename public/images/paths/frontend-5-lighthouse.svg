@@ -56,19 +56,19 @@
       <g transform="translate(20, 42)">
         <rect width="165" height="50" rx="6" fill="#1e293b" />
         <text x="12" y="20" fill="#94a3b8" font-family="monospace" font-size="10">Largest Contentful Paint</text>
-        <text x="12" y="40" fill="#10b981" font-family="sans-serif" font-size="16" font-weight="bold">LCP 0.8s &bull; Fast</text>
+        <text x="12" y="40" fill="#10b981" font-family="sans-serif" font-size="16" font-weight="bold">LCP 0.8s • Fast</text>
       </g>
 
       <g transform="translate(205, 42)">
         <rect width="165" height="50" rx="6" fill="#1e293b" />
         <text x="12" y="20" fill="#94a3b8" font-family="monospace" font-size="10">Interaction to Next Paint</text>
-        <text x="12" y="40" fill="#10b981" font-family="sans-serif" font-size="16" font-weight="bold">INP 42ms &bull; Good</text>
+        <text x="12" y="40" fill="#10b981" font-family="sans-serif" font-size="16" font-weight="bold">INP 42ms • Good</text>
       </g>
 
       <g transform="translate(390, 42)">
         <rect width="170" height="50" rx="6" fill="#1e293b" />
         <text x="12" y="20" fill="#94a3b8" font-family="monospace" font-size="10">Cumulative Layout Shift</text>
-        <text x="12" y="40" fill="#10b981" font-family="sans-serif" font-size="16" font-weight="bold">CLS 0.00 &bull; Stable</text>
+        <text x="12" y="40" fill="#10b981" font-family="sans-serif" font-size="16" font-weight="bold">CLS 0.00 • Stable</text>
       </g>
     </g>
   </g>

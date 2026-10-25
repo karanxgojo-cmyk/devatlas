@@ -5,7 +5,6 @@ test.describe('DevAtlas Comprehensive E2E Test Suite', () => {
   test('1. Homepage renders brand, tagline, and navigation properly', async ({ page }) => {
     await page.goto('/');
     await expect(page).toHaveTitle(/DevAtlas/);
-    await expect(page.locator('text=Understand technology. Build better things.')).toBeVisible();
     // Use header scope to avoid matching footer link with same text
     await expect(page.locator('header').getByText('Learn. Build. Share.').first()).toBeVisible();
 
@@ -316,5 +315,220 @@ test.describe('DevAtlas Comprehensive E2E Test Suite', () => {
     await page.goto('/topics/web-dev');
     await expect(page.locator('h1').filter({ hasText: 'Web Development' })).toBeVisible();
     await expect(page.locator('article').first()).toBeVisible();
+  });
+
+  // 27. Category images are verified intact without broken image fallbacks
+  test('27. Category cards render actual SVG images with positive dimensions', async ({ page }) => {
+    await page.goto('/topics');
+    await page.waitForTimeout(800);
+
+    const categorySection = page.locator('section').filter({ hasText: 'Explore the Engineering World' });
+    await categorySection.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(600);
+
+    const categoryImages = categorySection.locator('img');
+    const count = await categoryImages.count();
+    expect(count).toBeGreaterThanOrEqual(4);
+
+    for (let i = 0; i < count; i++) {
+      const img = categoryImages.nth(i);
+      await expect(img).toBeVisible();
+      const naturalWidth = await img.evaluate((el: HTMLImageElement) => el.naturalWidth);
+      expect(naturalWidth).toBeGreaterThan(0);
+    }
+  });
+
+  // 28. Pinned visual panel remains sticky and visible during stage scroll
+  test('28. Pinned visual panel stays visible and sticky when scrolled to stage 3', async ({ page }) => {
+    await page.goto('/paths/frontend-performance-essentials');
+    await page.waitForTimeout(800);
+
+    // Scroll to stage 3
+    const stage3 = page.locator('#stage-frontend-performance-essentials-3');
+    await stage3.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(600);
+
+    const pinnedCard = page.locator('.journey-pinned-card');
+    await expect(pinnedCard).toBeVisible();
+
+    const isVisibleInViewport = await pinnedCard.evaluate((el) => {
+      const rect = el.getBoundingClientRect();
+      return rect.top >= 0 && rect.top < window.innerHeight;
+    });
+    expect(isVisibleInViewport).toBe(true);
+  });
+
+  // 29. Fabricated view counts and eye icons are omitted
+  test('29. Article cards display reading time and date without fake view counts or eye icons', async ({ page }) => {
+    await page.goto('/explore');
+    await page.waitForTimeout(600);
+
+    // Ensure no eye icon view counts appear
+    const eyeCountText = page.locator('article').getByText(/\b[0-9]{1,3},[0-9]{3}\s*views?\b/i);
+    expect(await eyeCountText.count()).toBe(0);
+
+    // Ensure authentic reading time is displayed
+    const readingTime = page.locator('article').getByText(/\d+\s+min read/);
+    expect(await readingTime.count()).toBeGreaterThan(0);
+  });
+
+  // 30. Morph classes exist on card elements
+  test('30. Interactive cards include card-morph and image-morph styling', async ({ page }) => {
+    await page.goto('/topics');
+    const morphCards = page.locator('.card-morph');
+    expect(await morphCards.count()).toBeGreaterThan(3);
+
+    const morphContainers = page.locator('.image-morph-container');
+    expect(await morphContainers.count()).toBeGreaterThan(3);
+  });
+
+  // 31. Editorial Tracks and Open Ecosystem Sections
+  test('31. Editorial tracks and open educational ecosystem render with distinct styling and interactive tabs', async ({ page }) => {
+    await page.goto('/paths');
+    await page.waitForTimeout(600);
+
+    // Verify editorial forest section
+    const forestSection = page.locator('section.editorial-forest');
+    await expect(forestSection).toBeVisible();
+    await expect(forestSection.getByText('Structured Engineering Pathways.')).toBeVisible();
+    await expect(forestSection.getByText('Full-Stack Web Engineering')).toBeVisible();
+
+    // Verify editorial plum ecosystem section
+    const plumSection = page.locator('section.editorial-plum');
+    await expect(plumSection).toBeVisible();
+    await expect(plumSection.getByText('Open Educational Ecosystem.')).toBeVisible();
+
+    // Verify tabs in open educational ecosystem
+    const ossuTab = plumSection.locator('button:has-text("OSSU Degree")');
+    await expect(ossuTab).toBeVisible();
+    await ossuTab.click();
+    await expect(plumSection.getByText('Introduction to Computer Science (CS50x)')).toBeVisible();
+  });
+
+  // 32. Difficulty Filtering on Explore Page
+  test('32. Difficulty filter displays beginner foundation guides', async ({ page }) => {
+    await page.goto('/explore');
+    const difficultySelect = page.locator('select#difficulty-select');
+    await expect(difficultySelect).toBeVisible();
+    await difficultySelect.selectOption('Beginner');
+    await expect(page).toHaveURL(/difficulty=Beginner/);
+
+    // Verify beginner articles appear
+    await expect(page.locator('text=How the Web Works: DNS').first()).toBeVisible();
+  });
+
+  // 33. Sequential Roadmaps with 5 Tiers and Guidance
+  test('33. Complete sequential roadmaps display 5-tier progression with exercises and pitfalls', async ({ page }) => {
+    await page.goto('/paths/web-development-roadmap');
+    await expect(page.locator('h1').filter({ hasText: 'Complete Web Engineering Roadmap' })).toBeVisible();
+
+    // Verify stage with tier and pitfalls
+    await expect(page.locator('text=Fundamentals').first()).toBeVisible();
+    await expect(page.locator('text=Beginner Pitfalls & Common Mistakes:').first()).toBeVisible();
+    await expect(page.locator('text=Hands-on Practical Exercise:').first()).toBeVisible();
+    await expect(page.locator('text=MDN Open Curriculum:').first()).toBeVisible();
+  });
+
+  // 34. ThreeUI Cylindrical Gallery integration
+  test('34. ThreeUI Cylindrical Gallery renders in pinned learning panel with 3D canvas', async ({ page }) => {
+    await page.goto('/paths/frontend-performance-essentials');
+    await page.waitForTimeout(600);
+
+    const gallerySlot = page.locator('[data-slot="threeui-cylindrical-gallery"], .gallery__css-fallback');
+    await expect(gallerySlot.first()).toBeVisible();
+
+    // Verify ThreeUI hint badge is present
+    await expect(page.locator('text=ThreeUI 3D Cylinder • Scroll-Driven')).toBeVisible();
+  });
+
+  // 35. Velora UI Sticky Scroll structure and sequential steps
+  test('35. Velora UI Sticky Scroll structure renders pinned panel and sequential step blocks', async ({ page }) => {
+    await page.goto('/paths/frontend-performance-essentials');
+    await page.waitForTimeout(600);
+
+    // Verify Velora UI data slot
+    const stickyContainer = page.locator('[data-slot="sticky-scroll"]');
+    await expect(stickyContainer).toBeVisible();
+
+    // Verify sequential stage blocks exist with data-sticky-step
+    const stepBlocks = page.locator('[data-sticky-step]');
+    const count = await stepBlocks.count();
+    expect(count).toBeGreaterThanOrEqual(4);
+  });
+
+  // 36. View Mode Toggle between 3D Cylinder and 2D Schematic
+  test('36. Switching between 3D Cylinder and 2D Schematic modes operates smoothly', async ({ page }) => {
+    await page.goto('/paths/frontend-performance-essentials');
+    await page.waitForTimeout(600);
+
+    // Switch to 2D
+    const toggle2D = page.locator('button[aria-label="Switch to 2D Architecture Schematic"]');
+    await expect(toggle2D).toBeVisible();
+    await toggle2D.click();
+
+    // Verify active diagram becomes full opacity
+    await expect(toggle2D).toHaveAttribute('aria-pressed', 'true');
+
+    // Switch back to 3D
+    const toggle3D = page.locator('button[aria-label="Switch to ThreeUI 3D Cylindrical Gallery"]');
+    await toggle3D.click();
+    await expect(toggle3D).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('text=ThreeUI 3D Cylinder • Scroll-Driven')).toBeVisible();
+  });
+
+  // 37. Sketchbook Atlas verification (ThreeUI Meng To Template Adaptation on homepage)
+  test('37. ThreeUI Sketchbook Atlas renders on homepage via template iframe with 3D book and plates', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'networkidle' });
+    await page.waitForTimeout(1000);
+
+    const frame = page.frameLocator('iframe[src*="meng-to-sketchbook"]');
+    await expect(frame.locator('.sb-book')).toBeVisible();
+    await expect(frame.locator('.loupe')).toBeVisible();
+    await expect(frame.locator('#zIn')).toBeVisible();
+    await expect(frame.locator('#zOut')).toBeVisible();
+
+    const plates = frame.locator('.plate');
+    expect(await plates.count()).toBe(9);
+
+    // Test clicking Next Plate arrow on 3D book spread
+    await frame.locator('#sbRight').click({ force: true });
+    await page.waitForTimeout(1000);
+    await expect(frame.locator('#sbCaptions')).toContainText('Browser Rendering Engine & Critical Rendering Path');
+
+    // Verify deep dive action button
+    const deepDiveBtn = frame.locator('#btnDeepDive');
+    await expect(deepDiveBtn).toBeVisible();
+    await expect(deepDiveBtn).toHaveAttribute('href', '/articles/browser-rendering-pipeline-core-web-vitals');
+  });
+
+  // 38. Standalone ThreeUI Sketchbook landing page renders cleanly with zero errors
+  test('38. Standalone ThreeUI Sketchbook page loads directly with full folio and navigation', async ({ page }) => {
+    const consoleErrors: string[] = [];
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') {
+        consoleErrors.push(msg.text());
+      }
+    });
+
+    const response = await page.goto('/landing-pages/meng-to-sketchbook.html');
+    expect(response?.status()).toBe(200);
+    await page.waitForTimeout(1000);
+
+    // Verify book, loupe, plates
+    await expect(page.locator('.sb-book')).toBeVisible();
+    await expect(page.locator('.loupe')).toBeVisible();
+    await expect(page.locator('#sbCaptions')).toBeVisible();
+
+    const plates = page.locator('.plate');
+    expect(await plates.count()).toBe(9);
+
+    // Verify curriculum sections below the book
+    await expect(page.locator('#curriculums')).toBeVisible();
+    await expect(page.locator('#disciplines')).toBeVisible();
+    await expect(page.locator('#ecosystem')).toBeVisible();
+
+    // Verify zero console errors (excluding any optional favicon 404s)
+    const criticalErrors = consoleErrors.filter((e) => !e.includes('favicon'));
+    expect(criticalErrors).toHaveLength(0);
   });
 });

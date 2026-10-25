@@ -1,20 +1,273 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================================================================
+   SKETCHBOOK TEMPLATE FONTS & DESIGN SYSTEM TOKENS (Meng To ThreeUI)
+   ========================================================================= */
+
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/sketchbook/instrument-serif.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/sketchbook/instrument-serif-italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 600;
+  font-display: swap;
+  src: url('/sketchbook/newsreader.woff2') format('woff2');
+}
+
+.font-serif {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+.font-serif-body {
+  font-family: 'Newsreader', Georgia, serif;
+}
+
+/* Botanical paper wash ground */
+.sketchbook-wash {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background: url('/sketchbook/bg-wash.jpg') center top / cover no-repeat;
+  opacity: 0.65;
+}
+
+.sketchbook-wash:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(245, 240, 232, 0.35) 0%, rgba(245, 240, 232, 0.8) 60%, #F5F0E8 95%);
+}
+
+.sketchbook-card {
+  background-color: #FFF8EE;
+  border: 1px solid #DFD0BE;
+  box-shadow: 0 4px 18px -2px rgba(73, 55, 47, 0.07), 0 1px 3px rgba(73, 55, 47, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sketchbook-card:hover {
+  border-color: #E98898;
+  box-shadow: 0 10px 28px -4px rgba(73, 55, 47, 0.12);
+}
+
+.dark .sketchbook-wash {
+  opacity: 0.18;
+  filter: invert(0.9) hue-rotate(180deg) brightness(0.6);
+}
+
+.dark .sketchbook-wash:after {
+  background: linear-gradient(180deg, rgba(31, 26, 23, 0.5) 0%, rgba(31, 26, 23, 0.85) 60%, #1F1A17 95%);
+}
+
+.dark .sketchbook-card {
+  background-color: #27211C;
+  border: 1px solid #3D322B;
+  box-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.dark .sketchbook-card:hover {
+  border-color: #E98898;
+  box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.6);
+}
+
+/* =========================================================================
+   EDITORIAL DARK MODE CLASS MAPPINGS (Warm Espresso / Charcoal Palette)
+   ========================================================================= */
+
+.dark body {
+  background-color: #1F1A17;
+  color: #F5F0E8;
+}
+
+.dark .bg-\[\#F5F0E8\] {
+  background-color: #1F1A17 !important;
+}
+
+.dark .bg-\[\#F5F0E8\]\/95 {
+  background-color: rgba(31, 26, 23, 0.95) !important;
+}
+
+.dark .bg-\[\#FFF8EE\] {
+  background-color: #27211C !important;
+}
+
+.dark .bg-\[\#FFF5E6\] {
+  background-color: #241E1A !important;
+}
+
+.dark .bg-\[\#FFF5E6\]\/95 {
+  background-color: rgba(36, 30, 26, 0.95) !important;
+}
+
+.dark .bg-\[\#ECE4D8\] {
+  background-color: #2C2520 !important;
+}
+
+.dark .text-\[\#49372F\] {
+  color: #F5F0E8 !important;
+}
+
+.dark .text-\[\#795548\] {
+  color: #DFD0BE !important;
+}
+
+.dark .text-\[\#174B35\] {
+  color: #3EB489 !important; /* Mint-emerald readable headings & icons */
+}
+
+.dark .border-\[\#DFD0BE\] {
+  border-color: #3D322B !important;
+}
+
+.dark .border-\[\#ECE4D8\] {
+  border-color: #49372F !important;
+}
+
+.dark .border-\[\#795548\]\/40 {
+  border-color: rgba(223, 208, 190, 0.3) !important;
+}
+
+.dark .hover\:bg-\[\#FFFDF8\]:hover {
+  background-color: #2E2721 !important;
+}
+
+.dark .hover\:bg-\[\#FFF8EE\]:hover {
+  background-color: #2C2520 !important;
+}
+
+.dark .hover\:bg-\[\#F2B8C6\]\/30:hover {
+  background-color: rgba(242, 184, 198, 0.15) !important;
+}
+
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #27211C;
+  color: #F5F0E8;
+  border-color: #3D322B;
+}
+
+.dark code:not(pre code) {
+  background-color: #2A231E;
+  color: #F2B8C6;
+  border-color: #3D322B;
+}
+
+.dark pre {
+  background-color: #171412 !important;
+  border-color: #3D322B !important;
+}
+
 @layer base {
   :root {
-    --background: #f8fafc;
-    --foreground: #0f172a;
-    --card: #ffffff;
-    --card-foreground: #0f172a;
-    --border: #e2e8f0;
+    /* DevAtlas Editorial Design System - Refined Warm Palette Specifications */
+    --background: #F5F0E8;        /* Warm off-white page background */
+    --background-subtle: #ECE4D8; /* Slightly deeper tone */
+    --foreground: #49372F;        /* Dark brown headings & body */
+    --foreground-muted: #795548;  /* Warm brown secondary */
+    --card: #FFF8EE;              /* Soft cream content cards */
+    --card-foreground: #49372F;
+    --border: #DFD0BE;            /* Muted beige card borders */
+    --border-hover: #CDBAA5;
+
+    /* Theme Accents */
+    --primary: #174B35;           /* Forest Green */
+    --primary-hover: #123d2b;     /* Dark Forest Green */
+    --primary-light: #D8E9DA;     /* Pale Mint */
+    --accent: #F04B35;            /* Coral Red */
+    --accent-hover: #d93d28;      /* Deep Coral Red */
+    --accent-light: #FBE2CB;      /* Pale Peach */
+    --accent-glow: rgba(240, 75, 53, 0.15);
+
+    --shadow-soft: 0 4px 20px -2px rgba(73, 55, 47, 0.06);
+    --shadow-hover: 0 14px 32px -4px rgba(233, 136, 152, 0.18), 0 4px 12px -2px rgba(73, 55, 47, 0.08);
+
+    /* Refined Color Palette Tokens */
+    --soft-pink: #F2B8C6;
+    --coral-pink: #E98898;
+    --sky-blue: #9DD8EB;
+    --warm-off-white: #F5F0E8;
+    --soft-cream: #FFF8EE;
+    --warm-brown: #795548;
+    --dark-brown: #49372F;
+    --muted-beige: #DFD0BE;
+
+    /* Retained Complementary Accents */
+    --forest-green: #174B35;
+    --deep-green: #224936;
+    --warm-cream: #FFF5E6;
+    --coral-red: #F04B35;
+    --deep-plum: #63284F;
+    --deep-plum-dark: #4D1938;
+    --vibrant-orange: #FF8A24;
+    --pale-peach: #FBE2CB;
+    --pale-mint: #D8E9DA;
+    --soft-coral: #E7B4A0;
+    --muted-green: #597260;
+    --muted-green-border: #416C53;
   }
 
   .dark {
-    --background: #090d16;
-    --foreground: #f1f5f9;
-    --card: #0f172a;
-    --card-foreground: #f1f5f9;
-    --border: #1e293b;
+    /* DevAtlas Editorial Dark Mode - Warm charcoal/espresso palette, zero blue-black, zero navy */
+    --background: #1F1A17;        /* Warm dark charcoal/espresso surfaces */
+    --background-subtle: #171412; /* Deep espresso base */
+    --foreground: #F5F0E8;        /* Soft readable cream text */
+    --foreground-muted: #DFD0BE;  /* Muted beige/taupe secondary text */
+    --card: #27211C;              /* Warm dark card background */
+    --card-foreground: #F5F0E8;
+    --border: #3D322B;            /* Warm brown borders */
+    --border-hover: #5A4A3F;
+
+    --primary: #2E7D5A;           /* Vibrant forest accent */
+    --primary-hover: #38956C;
+    --primary-light: #1F382B;
+    --accent: #F04B35;            /* Coral Red */
+    --accent-hover: #FF634E;
+    --accent-light: #4A241E;
+    --accent-glow: rgba(240, 75, 53, 0.25);
+
+    --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+    --shadow-hover: 0 14px 34px -4px rgba(0, 0, 0, 0.55), 0 4px 16px -2px rgba(240, 75, 53, 0.2);
+
+    /* Refined Color Palette Tokens */
+    --soft-pink: #F2B8C6;
+    --coral-pink: #E98898;
+    --sky-blue: #9DD8EB;
+    --warm-off-white: #1F1A17;
+    --soft-cream: #27211C;
+    --warm-brown: #DFD0BE;
+    --dark-brown: #F5F0E8;
+    --muted-beige: #3D322B;
+
+    --forest-green: #2E7D5A;
+    --deep-green: #1B3F2E;
+    --warm-cream: #241E1A;
+    --coral-red: #F04B35;
+    --deep-plum: #421D35;
+    --deep-plum-dark: #2A1222;
+    --vibrant-orange: #FF8A24;
+    --pale-peach: #3D2920;
+    --pale-mint: #1E3327;
+    --soft-coral: #E7B4A0;
+    --muted-green: #3A4F41;
+    --muted-green-border: #4A6353;
   }
 
   /* Accessible heading scroll offsets for sticky navigation */
@@ -28,6 +281,169 @@
     min-height: 100vh;
     overflow-x: hidden;
   }
+}
+
+/* =========================================================================
+   MORPHING HOVER ANIMATIONS (Lando Norris / Immersive Editorial Inspiration)
+   ========================================================================= */
+
+.card-morph {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease,
+              background-color 0.35s ease;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-morph:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  :root:not(.dark) .card-morph:hover {
+    border-color: rgba(234, 88, 12, 0.45);
+  }
+
+  .dark .card-morph:hover {
+    border-color: rgba(249, 115, 22, 0.55);
+  }
+}
+
+.image-morph-container {
+  overflow: hidden;
+  border-radius: 0.75rem;
+  transition: border-radius 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease,
+              box-shadow 0.5s ease;
+  will-change: border-radius;
+}
+
+.image-morph-target {
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.5s ease;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-morph:hover .image-morph-container {
+    border-radius: 1.25rem;
+  }
+
+  :root:not(.dark) .card-morph:hover .image-morph-container {
+    border-color: rgba(234, 88, 12, 0.35);
+    box-shadow: 0 4px 16px -2px rgba(234, 88, 12, 0.12);
+  }
+
+  .dark .card-morph:hover .image-morph-container {
+    border-color: rgba(168, 85, 247, 0.45);
+    box-shadow: 0 4px 20px -2px rgba(168, 85, 247, 0.2);
+  }
+
+  .card-morph:hover .image-morph-target {
+    transform: scale(1.07) translateY(-2px);
+    filter: brightness(1.04) contrast(1.02);
+  }
+}
+
+/* =========================================================================
+   EDITORIAL COLOR SECTION TRANSITIONS (The Cloud Fairy & Modern Editorial)
+   ========================================================================= */
+
+.editorial-forest {
+  background-color: var(--forest-bg);
+  color: var(--forest-cream);
+}
+.dark .editorial-forest {
+  background-color: var(--forest-bg-dark);
+}
+
+.editorial-plum {
+  background-color: var(--plum-bg);
+  color: var(--plum-cream);
+}
+.dark .editorial-plum {
+  background-color: var(--plum-bg-dark);
+}
+
+.editorial-coral {
+  background-color: var(--coral-bg);
+  color: var(--coral-cream);
+}
+.dark .editorial-coral {
+  background-color: var(--coral-bg-dark);
+}
+
+.editorial-cream {
+  background-color: #FFF8EE;
+  color: #49372F;
+}
+.dark .editorial-cream {
+  background-color: #FFF8EE;
+  color: #49372F;
+}
+
+.editorial-card {
+  background-color: var(--forest-cream-card);
+  color: var(--forest-text-dark);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .editorial-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.editorial-number-callout {
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  color: var(--forest-coral);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  user-select: none;
+}
+
+/* =========================================================================
+   3D CYLINDRICAL WHEEL SCROLLING STYLES (Wheel & Cylinder Page Transitions)
+   ========================================================================= */
+
+.cylindrical-perspective-wrapper {
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+  overflow-x: clip;
+}
+
+.cylindrical-section {
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  position: relative;
+}
+
+/* Primary and Accent Button Styles conforming to Theme */
+.btn-accent {
+  background-color: #ea580c;
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+.btn-accent:hover {
+  background-color: #c2410c;
+}
+.dark .btn-accent {
+  background-color: #ea580c;
+  color: #ffffff;
+}
+.dark .btn-accent:hover {
+  background-color: #c2410c;
 }
 
 /* Lenis Recommended Overrides */
@@ -58,5 +474,6 @@ html.lenis, html.lenis body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+    transform: none !important;
   }
 }
