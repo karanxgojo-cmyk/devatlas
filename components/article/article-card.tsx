@@ -9,8 +9,7 @@ interface ArticleCardProps {
   variant?: 'white' | 'cream';
 }
 
-export function ArticleCard({ article, variant = 'white' }: ArticleCardProps) {
-  const isCream = variant === 'cream';
+export function ArticleCard({ article }: ArticleCardProps) {
 
   return (
     <article

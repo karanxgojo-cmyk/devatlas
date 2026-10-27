@@ -152,7 +152,7 @@ function FiltersContent({ availableTags }: FiltersProps) {
             className="w-full px-3 py-2 text-xs rounded-lg border border-[#DFD0BE] bg-[#FFF8EE] text-[#49372F] focus:outline-none focus:ring-2 focus:ring-[#F04B35] shadow-xs"
           >
             <option value="newest">Newest First</option>
-            <option value="popular">Curator's Choice / Featured</option>
+            <option value="popular">Curator&apos;s Choice / Featured</option>
             <option value="reading-time-asc">Reading Time (Shortest)</option>
             <option value="reading-time-desc">Reading Time (Longest)</option>
           </select>

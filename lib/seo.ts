@@ -1,7 +1,13 @@
 import { Article, LearningPath } from '@/types/content';
 import { Metadata } from 'next';
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://devatlas.dev';
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'https://devatlas-kohl.vercel.app');
 export const SITE_NAME = 'DevAtlas';
 export const SITE_TAGLINE = 'Learn. Build. Share.';
 export const SITE_DESCRIPTION = 'A high-performance engineering knowledge platform for developers, engineering students, and self-learners.';

@@ -23,6 +23,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${SITE_URL}/topics`,
+      lastModified: BUILD_DATE,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
+      url: `${SITE_URL}/paths`,
+      lastModified: BUILD_DATE,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
       url: `${SITE_URL}/dashboard`,
       lastModified: BUILD_DATE,
       changeFrequency: 'weekly',
