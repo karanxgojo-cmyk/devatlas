@@ -1,15 +1,16 @@
 import { MetadataRoute } from 'next';
-import { SITE_URL } from '@/lib/seo';
 
 export default function robots(): MetadataRoute.Robots {
+  const domain = process.env.NEXT_PUBLIC_SITE_URL || 'https://devatlas-kohl.vercel.app';
+
   return {
     rules: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/admin/'],
+        disallow: ['/api/', '/admin/', '/dashboard', '/bookmarks'],
       },
     ],
-    sitemap: `${SITE_URL}/sitemap.xml`,
+    sitemap: `${domain}/sitemap.xml`,
   };
 }
